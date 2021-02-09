@@ -82,12 +82,17 @@
                         <form id="frm" name="frm" onsubmit="return formCheck()"
                         action="join.do" method="post" novalidate="novalidate">
                         	<div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                        	<div class="form-row">
+                                <div class="form-group floating-label-form-group controls col-md-10 mb-0">
                                     <label>Id</label>
                                     <input class="form-control" id="memberId" name="memberId" type="text" 
-                                    onclick="idCheck(memberId.value)" placeholder="Id" required="required" data-validation-required-message="Please enter your Id." />
+                                    placeholder="Id" required="required" data-validation-required-message="Please enter your Id." />
                                     <p class="help-block text-danger"></p>
+                                    </div>
+                                <div class="form-group col-md-2">
+                                <button class="btn btn-primary btn-l" id="Id Check" type="button" onclick="idCheck(memberId.value)" style="float: right">Id Check</button>
                                 </div>
+                			   </div>        
                             </div>
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
@@ -146,11 +151,12 @@
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
-                            <!-- 삽입 -->
-                            <div>
-								<input type="radio" id="memberAuth" name="memberAuth" value="USER" checked="checked">개인회원
-								<input type="radio" id="memberAuth" name="memberAuth" value="SELLER">판매자 
-							</div>
+                          	<!-- 삽입 -->
+							<select class="form-control form-control-lg" name="memberAuth">
+ 							<option id="memberAuth" value="USER">USER</option>
+ 							<option id="memberAuth" value="SELLER">SELLER</option>
+							</select>
+                    
 
                             <!-- 삽입끝 -->
                         

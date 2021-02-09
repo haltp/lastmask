@@ -20,13 +20,13 @@
 
 <script type="text/javascript">
 	function updateUser(str){
-		frm.action = "userUpForm.do?row="+str;
+		frm.action = "sellerUpForm.do?row="+str;
 		frm.submit();
 	}
 	function deleteUser(str){
 		var yn = confirm("정말 삭제하시겠습니까?");
 		if (yn) {
-			frm.action = "userDelete.do?row="+str;
+			frm.action = "sellerDelete.do?row="+str;
 			frm.submit();
 		}
 	}
@@ -53,7 +53,7 @@
                         <a class="dropdown-item" href="#">Settings</a>
                         <a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="logout.do">Logout</a>
                     </div>
                 </li>
             </ul>
