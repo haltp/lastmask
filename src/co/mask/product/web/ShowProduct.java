@@ -20,6 +20,7 @@ public class ShowProduct implements Command {
 		list=dao.selectList();
 		request.setAttribute("list", list);
 		
+		
 		return "view/product/showListForm";
 	}
 

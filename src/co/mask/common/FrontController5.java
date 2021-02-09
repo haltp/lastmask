@@ -45,6 +45,7 @@ import co.mask.member.web.MyPageUpdateForm;
 import co.mask.product.web.DeleteAdminExec;
 import co.mask.product.web.DeleteExec;
 import co.mask.product.web.Insertexec;
+import co.mask.product.web.ProductImageUploadForm;
 import co.mask.product.web.ShowProduct;
 import co.mask.product.web.ShowProductSeller;
 import co.mask.product.web.ToInsertProduct;
@@ -134,6 +135,7 @@ public class FrontController5 extends HttpServlet {
 			map.put("/adminUserFormTest.do", new AdminUserFormTest());
 			map.put("/adminMain.do", new AdminMain());
 			map.put("/sellerForm.do", new SellerForm());
+			map.put("/productImageUploadForm.do", new ProductImageUploadForm());
 			
 			
 		

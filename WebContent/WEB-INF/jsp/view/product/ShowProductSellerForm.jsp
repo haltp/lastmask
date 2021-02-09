@@ -11,6 +11,7 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="dist/css/styles.css" rel="stylesheet" />
+         <link href="css/sb-admin-2.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     <script>
@@ -89,6 +90,24 @@ th {
 }
 
 </style>
+<script>
+ function productInsert() {
+	 var form = document.frm;
+	 var name = form.productName;
+	 var qt = form.productQunt;
+	 var price = form.productPrice;
+	 var seller = form.ProductSeller;
+	 
+	
+	  form.submit();
+ }
+ 
+ function file_open() {
+	 window.open('productImageUploadForm.do', 'upload', 'width=300 height=200 left=300 top=30');
+	 
+ }
+
+</script>
     
     </head>
     <body class="sb-nav-fixed">
@@ -122,35 +141,80 @@ th {
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                        
                             <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link" href="sellView.do">판매내역</a>
-                            <a class="nav-link" href="showProductSeller.do">상품관리</a>
-                            <a class="nav-link" href="toUpdateProduct.do">상품등록</a>
-                            <a class="nav-link" href="toUpdateProduct.do">상품수정</a>
-                            
-                    
-                    </div>
-                    
-                </nav>
-            </div>
+                            	<a class="nav-link" href="sellView.do">판매내역</a>
+                            	<a class="nav-link" href="showProductSeller.do">상품관리</a>
+                    		 </div>
+                    	</div>
+                 	</nav>
+            	</div>
+            
+            
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4">상품관리</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">상품을 등록하고 수정, 삭제할 수 있습니다.</li>
                         </ol>
-
+                        
+                        <form id="frm" name="frm" action="insertExec.do" method="post">
+                        	<div class="card mb-4">
+                        		<div class="card-header">
+                                	<i class="fas fa-table mr-1"></i>
+                               			상품등록
+                            	</div>
+                            </div>
+                        
+                            
+		                	<!-- Nested Row within Card Body -->
+		                	<div class="row">
+		                		 <div class="col-lg-7">
+		                   			<div class="p-5">
+		  								<div class="text-center">
+		                                	<h1 class="h4 text-gray-900 mb-4">상품을 등록하세요!</h1>
+		                            	</div>
+		                            
+			                         	<div class="form-group">
+			                              <input type="text" class="form-control form-control-user" id="productName" name="productName"
+			                                     placeholder="상품이름" required>
+			                            </div>
+		                                <div class="form-group row">
+		                                    <div class="col-sm-6 mb-3 mb-sm-0">
+		                                        <input type="number" class="form-control form-control-user" id="productQunt" name="productQunt"
+		                                            placeholder="상품 수량" required>
+		                                    </div>
+		                                    <div class="col-sm-6">
+		                                        <input type="number" class="form-control form-control-user" id="productPrice" name="productPrice"
+		                                            placeholder="판매 가격" required>
+		                                    </div>
+		                                </div>
+		                                <div class="form-group">
+			                                    <input type="text" class="form-control form-control-user" id="ProductSeller" name="ProductSeller"
+			                                        placeholder="판매자" required>
+			                             </div>
+			                             <div class="form-group">
+			                                    <input type="text" class="form-control form-control-user" id="image" name="image" onclick="file_open()"
+			                                        placeholder="사진을 추가하려면 여기를 누르세요" > 
+			                             </div>
+		                        	</div>
+		                    	</div>
+		                    	<button class="btn btn-primary btn-user btn-block" type="button" onclick="submit()">
+                                    Register
+                                </a>
+                                <hr>
+		               		 </div>
+          				</form>
+	
   
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                DataTable Example
+                                상품목록
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                <form action="" id="frm" name="frm" method="post">
+                                <!-- <form action="" id="frm" name="frm" method="post"> -->
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -187,7 +251,7 @@ th {
                                             
                                         </tbody>
                                     </table>
-                                    </form>
+                                    <!-- </form> -->
                                 </div>
                             </div>
                         </div>
