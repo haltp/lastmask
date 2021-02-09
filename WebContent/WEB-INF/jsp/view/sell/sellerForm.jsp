@@ -49,8 +49,8 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link" href="sellView.do">판매내역</a>
                             <a class="nav-link" href="showProductSeller.do">상품관리</a>
-                            <a class="nav-link" href="toUpdateProduct.do">상품등록</a>
-                            <a class="nav-link" href="toUpdateProduct.do">상품수정</a>
+                            <a class="nav-link" href="toInsertProduct.do">상품등록</a>
+                            
                             
                     
                     </div>
