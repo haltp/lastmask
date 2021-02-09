@@ -57,10 +57,11 @@ th {
 	display: flex;
 }
 </style>
+<jsp:include page="../main/menu.jsp" />
 </head>
 <body>
 
-	<jsp:include page="../main/menu.jsp" />
+	
 	<div class="container">
 		<div align="center">
 			<div>

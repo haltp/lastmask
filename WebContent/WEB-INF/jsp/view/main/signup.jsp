@@ -54,10 +54,34 @@
 				}).open();
 			}
 		</script>
-      <jsp:include page="menu.jsp"></jsp:include>  
+        
     </head>
     <body id="page-top">
-       <!-- nav -->
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">MASK</a>
+                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                    <!-- 수정 -->
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">마스크 구매</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="showBoardTest.do">게시판</a></li>
+                        <c:if test="${memberId eq null}">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="loginForm.do">로그인</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">회원가입</a></li>
+                        </c:if>
+                        <c:if test="${memberId ne null }">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="logout.do">로그아웃</a></li>
+                        </c:if>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/MaskTest/indexAdmin.jsp">관리자</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
@@ -95,7 +119,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/maskModel001.JPG" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
@@ -104,7 +128,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/maskModel002.JPG" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/cake.png" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
@@ -113,7 +137,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/maskModel003.JPG" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/circus.png" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
@@ -122,7 +146,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/maskModel004.JPG" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/game.png" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item 5-->
@@ -131,7 +155,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/maskModel005.JPG" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item 6-->
@@ -140,7 +164,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/maskModel006.JPG" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="" />
                         </div>
                     </div>
                 </div>
@@ -171,7 +195,106 @@
                 </div>
             </div>
         </section>
-       
+        <!-- Contact Section-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <!-- Contact Section Heading-->
+                <!-- 수정 -->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Sign Up</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Contact Section Form-->
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
+                        <form id="frm" name="frm" onsubmit="return formCheck()"
+                        action="join.do" method="post" novalidate="novalidate">
+                        	<div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Id</label>
+                                    <input class="form-control" id="memberId" name="memberId" type="text" 
+                                    onclick="idCheck(memberId.value)" placeholder="Id" required="required" data-validation-required-message="Please enter your Id." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Password</label>
+                                    <input class="form-control" id="memberPassword" name="memberPassword" type="password" 
+                                    placeholder="password" required="required" data-validation-required-message="Please enter your password." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                        	<div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Password Check</label>
+                                    <input class="form-control" id="memberPassword1" name="memberPassword1" type="password" 
+                                    placeholder="password check" required="required" data-validation-required-message="Please enter your name." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Name</label>
+                                    <input class="form-control" id="memberName" name="memberName" type="text" 
+                                    placeholder="Name" required="required" data-validation-required-message="Please enter your name." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Phone Number</label>
+                                    <input class="form-control" id="memberPhone" name="memberPhone" type="tel" 
+                                    placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                             <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>우편번호</label>
+                                    <input class="form-control" id="memberZipcode" name="memberZipcode" type="text" 
+                                    onclick="openZipSearch()" placeholder="우편번호" required="required" data-validation-required-message="Please enter your 우편번호." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                               
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>주소</label>
+                                    <input class="form-control" id="memberAddress" name="memberAddress"  type="text" 
+                                    placeholder="Address" required="required" data-validation-required-message="Please enter your Address." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Email Address</label>
+                                    <input class="form-control" id="memberEmail" name="memberEmail" type="email" 
+                                    placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <!-- 삽입 -->
+                            <div>
+								<input type="radio" id="memberAuth" name="memberAuth" value="USER" checked="checked">개인회원
+								<input type="radio" id="memberAuth" name="memberAuth" value="SELLER">판매자 
+							</div>
+
+                            <!-- 삽입끝 -->
+                        
+                            <br />
+                            <!-- <div id="success"> </div>-->
+                            <div></div>
+                            <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit" >Send</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">

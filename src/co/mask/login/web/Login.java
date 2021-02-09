@@ -28,7 +28,7 @@ public class Login implements Command {
 			session.setAttribute("memberId", vo.getMemberId());
 			session.setAttribute("memberAuth", vo.getMemberAuth());
 			request.setAttribute("vo", vo);
-			viewPage = "view/login/loginSuccess";
+			viewPage = "view/main/main";
 		} else {
 			viewPage = "view/login/loginFail";
 		}

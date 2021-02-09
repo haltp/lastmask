@@ -52,6 +52,8 @@ import co.mask.product.web.ToUpdateProduct;
 import co.mask.product.web.UpdateExec;
 import co.mask.sell.web.SellInsert;
 import co.mask.sell.web.SellView;
+import co.mask.sell.web.SellerForm;
+import test.AdminMain;
 import test.AdminUserFormTest;
 import test.ShowBoardTest;
 import test.ShowProductTest;
@@ -92,8 +94,7 @@ public class FrontController5 extends HttpServlet {
 			map.put("/logout.do", new Logout());//로그아웃
 			
 		//FrontController2
-			//Main
-			map.put("/main.do", new MainPage());
+	
 			
 			//Cart
 			map.put("/cartView.do", new CartView()); // 장바구니 리스트 페이지
@@ -107,8 +108,8 @@ public class FrontController5 extends HttpServlet {
 
 			
 		//FrontController3
-			map.put("/main.do", new MainPage());
-			map.put("/menu.do", new Menu()); //메뉴 확인하려고 index에서 바로 menu로 변경해보았습니다.
+			
+			
 			map.put("/boardListForm.do", new BoardListForm());
 			map.put("/boardWirte.do", new BoardWirte());
 			map.put("/header.do", new Hedaer());
@@ -131,6 +132,10 @@ public class FrontController5 extends HttpServlet {
 			map.put("/showProductTest.do", new ShowProductTest()); //test중입니다.
 			map.put("/showBoardTest.do", new ShowBoardTest());
 			map.put("/adminUserFormTest.do", new AdminUserFormTest());
+			map.put("/adminMain.do", new AdminMain());
+			map.put("/sellerForm.do", new SellerForm());
+			
+			
 		
 	}
 
