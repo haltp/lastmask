@@ -23,6 +23,7 @@ import co.mask.admin.web.UserUpdate;
 import co.mask.board.web.BoardListForm;
 import co.mask.board.web.BoardView;
 import co.mask.board.web.BoardWirte;
+import co.mask.board.web.BoardWriteForm;
 import co.mask.board.web.Hedaer;
 import co.mask.board.web.Notice;
 import co.mask.cart.web.BootPay;
@@ -51,9 +52,12 @@ import co.mask.product.web.ShowProductSeller;
 import co.mask.product.web.ToInsertProduct;
 import co.mask.product.web.ToUpdateProduct;
 import co.mask.product.web.UpdateExec;
+import co.mask.sell.web.BuyerView;
 import co.mask.sell.web.SellInsert;
 import co.mask.sell.web.SellView;
 import co.mask.sell.web.SellerForm;
+import co.mask.sellChart.web.ChartInsert;
+import co.mask.sellChart.web.ChartList;
 import test.AdminMain;
 import test.AdminUserFormTest;
 import test.ShowBoardTest;
@@ -104,19 +108,25 @@ public class FrontController5 extends HttpServlet {
 			map.put("/nonMemberBootPay.do", new NonMemberBootPay()); // 장바구니 삭제
 			map.put("/nonMemberCart.do", new NonMemberCart()); // 장바구니 삭제
 			//Sell
+			map.put("/buyerView.do", new BuyerView()); // 판매 내역 리스트 (구매자)
 			map.put("/sellView.do", new SellView()); // 판매 내역 리스트
 			map.put("/sellInsert.do", new SellInsert()); // 판매 내역 입력
+			//Chart
+			map.put("/chartInsert.do", new ChartInsert());
+			map.put("/chartList.do", new ChartList());
 
 			
 		//FrontController3
 			
 			
-			map.put("/boardListForm.do", new BoardListForm());
-			map.put("/boardWirte.do", new BoardWirte());
 			map.put("/header.do", new Hedaer());
 			map.put("/boardView.do", new BoardView());
 			map.put("/notice.do", new Notice());
-		
+			
+			map.put("/boardListForm.do", new BoardListForm());
+			map.put("/boardWriteForm.do", new BoardWriteForm());
+			map.put("/boardWirte.do", new BoardWirte());
+			
 		
 		//FrontController4
 			map.put("/showProduct.do", new ShowProduct()); //상품목록 조회
