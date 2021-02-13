@@ -1,284 +1,174 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
-        <link href="dist/css/styles.css" rel="stylesheet" />
-         <link href="css/sb-admin-2.min.css" rel="stylesheet">
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-    <script>
-function updateproduct(str) {
-	 var form = document.frm;
-	 var msg = confirm("정말 수정하시겠습니까?");
-	 if(msg){
-		 form.action="toUpdateProduct.do?row="+str;
-		 form.submit();	 
-	 }
-	 
-	 
-}
-
-function PdDelete(){
-	let deletee = confirm("정말 삭제하시겠습니까?");
-	if(deletee){
+<html>
+<head>
+ 	 <meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" /> 
+ 	
+	<title>상품관리</title>
+	
+	<!-- link -->
+  	<link href="dist/css/styles.css" rel="stylesheet" /> 
+	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+	  
+	<!-- script -->
+ 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+	<script>
+		function updateproduct(str) {
+			 var form = document.frm; 
+				 form.action="toUpdateProduct.do?row="+str;
+				 form.submit();	
+				 }
 		
-		location.href="deleteExec.do";
-	}
-	else{
-		alert("삭제 하였습니다.");
-	}
-	
-}
-function elertDelete(){
-	
-		alert("해당 상품은 출고중이므로 삭제 불가합니다.");
-	}
-	
+		function PdDelete(str){
+			let deletee = confirm("정말 삭제하시겠습니까?");
+			if(deletee){
+				location.href="deleteExec.do?row="+str;
+			}
+			else{
+				alert("삭제 하였습니다.");
+			}
+		}
 
-</script>
-    <style>
-table {
-  width:70%;
-}
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-td {
-  padding: 15px;
-  text-align: left;
-}
-th {
-  padding: 15px;
-  text-align: center;
-}
-#t01 tr:nth-child(even) {
-  background-color: #eee;
-}
-#t01 tr:nth-child(odd) {
- background-color: #fff;
-}
-#t01 th {
-  background-color: black;
-  color: white;
-}
+		
+		/* function productInsert() {
+			 var form = document.frm;
+			 var name = form.productName;
+			 var qt = form.productQunt;
+			 var price = form.productPrice;
+			 var seller = form.ProductSeller;
+			 
+			
+			  form.submit();
+		 } */
+		 
+		 function file_open() {
+			 window.open('productImageUploadForm.do', 'upload', 'width=300 height=200 left=300 top=30');
+			 
+		 }
+		 
+	</script>
+</head>
 
-.updateBtn{
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-  justify-content: center;
-  display: flex;
-
-}
-.deleteBtn{
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-  justify-content: center;
-  display: flex;
-}
-
-</style>
-<script>
- function productInsert() {
-	 var form = document.frm;
-	 var name = form.productName;
-	 var qt = form.productQunt;
-	 var price = form.productPrice;
-	 var seller = form.ProductSeller;
-	 
-	
-	  form.submit();
- }
+<body class="sb-nav-fixed">
  
- function file_open() {
-	 window.open('productImageUploadForm.do', 'upload', 'width=300 height=200 left=300 top=30');
-	 
- }
-
-</script>
-    
-    </head>
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="/MaskTest/index.jsp">Mask</a> <!-- 수정 -->
-            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ml-auto ml-md-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Activity Log</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Interface</div>
-                            	<a class="nav-link" href="sellView.do">판매내역</a>
-                            	<a class="nav-link" href="showProductSeller.do">상품관리</a>
-                    		 </div>
-                    	</div>
-                 	</nav>
-            	</div>
+ <jsp:include page="productMenu.jsp"></jsp:include> 
+ <div id="layoutSidenav">
+ <jsp:include page="productMenuLeft.jsp"></jsp:include> 
             
-            
+            <!-- 내용 -->
             <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid">
-                        <h1 class="mt-4">상품관리</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">상품을 등록하고 수정, 삭제할 수 있습니다.</li>
-                        </ol>
-                        
-                        <form id="frm" name="frm" action="insertExec.do" method="post">
-                        	<div class="card mb-4">
-                        		<div class="card-header">
-                                	<i class="fas fa-table mr-1"></i>
-                               			상품등록
-                            	</div>
-                            </div>
-                        
-                            
-		                	<!-- Nested Row within Card Body -->
-		                	<div class="row">
-		                		 <div class="col-lg-7">
-		                   			<div class="p-5">
-		  								<div class="text-center">
-		                                	<h1 class="h4 text-gray-900 mb-4">상품을 등록하세요!</h1>
-		                            	</div>
-		                            
-			                         	<div class="form-group">
-			                              <input type="text" class="form-control form-control-user" id="productName" name="productName"
-			                                     placeholder="상품이름" required>
-			                            </div>
-		                                <div class="form-group row">
-		                                    <div class="col-sm-6 mb-3 mb-sm-0">
-		                                        <input type="number" class="form-control form-control-user" id="productQunt" name="productQunt"
-		                                            placeholder="상품 수량" required>
-		                                    </div>
-		                                    <div class="col-sm-6">
-		                                        <input type="number" class="form-control form-control-user" id="productPrice" name="productPrice"
-		                                            placeholder="판매 가격" required>
-		                                    </div>
-		                                </div>
-		                                <div class="form-group">
-			                                    <input type="text" class="form-control form-control-user" id="ProductSeller" name="ProductSeller"
-			                                        placeholder="판매자" required>
-			                             </div>
-			                             <div class="form-group">
-			                                    <input type="text" class="form-control form-control-user" id="image" name="image" onclick="file_open()"
-			                                        placeholder="사진을 추가하려면 여기를 누르세요" > 
-			                             </div>
-		                        	</div>
-		                    	</div>
-		                    	<button class="btn btn-primary btn-user btn-block" type="button" onclick="submit()">
-                                    Register
-                                </a>
-                                <hr>
-		               		 </div>
-          				</form>
-	
-  
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table mr-1"></i>
+               <main><br /><br /><br />              
+            	<div class="container-fluid">
+            	             		<div class="card mb-4">
+                       <div class="card-header">
+	                      <i class="fas fa-table mr-1"></i>
                                 상품목록
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                <!-- <form action="" id="frm" name="frm" method="post"> -->
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th width="70" >상품 번호</th>
-											    <th width="100">상품 이름</th> 
-											    <th width="70">상품 수량</th>
-											    <th width="70">상품 판매가격</th>
-											    <th width="70">해당 판매자</th>
-											    <th width="70">상품 수정</th>
-											    <th width="70">상품 삭제</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            
-                                        </tfoot>
-                                        <tbody>
-                                        <c:forEach var="vo" items="${list }">
-						<tr >
-				 
-				    <td width="70">${vo.productNum}</td>
-				    <td width="70">${vo.productName}</td>
-				    <td width="70">${vo.productQunt}</td>
-				    <td width="70">${vo.productPrice}</td>
-				    <td width="70">${vo.productSeller}</td>
-			        <td>
-						<button type="button" onclick = "updateproduct('${vo.productNum}')" >수  정</button></td>
-			  	 	<td>
-						<button type="button" onclick="PdDelete()" >삭  제</button>
-			  	 		<button type="button" onclick="elertDelete()">삭  제</button>
-			  	 		
-		  	  </tr>
-		  	  </c:forEach>
+                        </div>
+                        <!-- card body -->
+						<div class="card-body">
+                           <div class="table-responsive">
+                              <form id="frm" name="frm" method="post">
+                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr align="center" style="background-color: silver">
+											<th width="70" >상품번호</th>
+										    <th width="100">상품이름</th> 
+										    <th width="70">수량</th>
+										    <th width="70">판매가격</th>
+										    <th width="70">판매자</th>
+										    <th width="70">수정</th>
+										    <th width="70">삭제</th>
+										</tr>
+									 </thead>
+				 					 <tbody>
+										<c:forEach var="vo" items="${list }">
+											<tr align="center">
+												<td width="70">${vo.productNum}</td>
+											    <td width="70">${vo.productName}</td>
+											    <td width="70">${vo.productQunt}</td>
+											    <td width="70">${vo.productPrice}</td>
+											    <td width="70">${vo.productSeller}</td>
+											    <td ><button type="button" onclick="updateproduct('${vo.productNum}')">수정</button></td>
+												<td ><button type="button" onclick="PdDelete('${vo.productNum}')" >삭  제</button>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</form><br/>
+						 </div>
+						</div>
+						<!-- card body 끝 -->
+					</div>
+					<!-- 공지목록 card 끝 -->
 					
-                                            
-                                        </tbody>
-                                    </table>
-                                    <!-- </form> -->
-                                </div>
-                            </div>
+             		<div class="card mb-4">
+                       <div class="card-header">
+	                      <i class="fas fa-table mr-1"></i>
+                                상품등록
                         </div>
-                    </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="dist/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="dist/assets/demo/chart-area-demo.js"></script>
-        <script src="dist/assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="dist/assets/demo/datatables-demo.js"></script>
-    </body>
+                        <!-- card body -->
+						<div class="card-body">
+                           <div class="table-responsive">
+					          <form id="frm1" name="frm1" action="insertExec.do" method="post">
+								<%-- <input type="hidden" name="boardWriter" value="${memberId }"> --%>
+								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									 <tr align="center">
+										<th>상품이름</th>
+										<td><input style="border:none" type="text"  id="productName" name="productName" size="130" required></td>
+									</tr> 
+									<tr align="center">
+										<th>수량</th>
+										<td><input style="border:none" type="text" id="productQunt" name="productQunt" size="130" required></td>
+									</tr>
+									<tr align="center">
+										<th>가격</th>
+										<td><input style="border:none" type="text" id="productPrice" name="productPrice" size="130" /></td>
+									</tr>	
+									<tr align="center">
+										<th>판매자</th>
+										<td><input style="border:none" type="text" id="ProductSeller" name="ProductSeller" size="130" required></td>
+									</tr>
+									<tr align="center">
+										<th>사진첨부</th>
+										<td><input style="border:none" type="text" id="image" name="image" onclick="file_open()" size="130" /></td>
+									</tr>
+				
+									<tr align="center" valign="middle">
+										<td colspan="5"><input type="submit" value="등록"> 
+										<input type="reset" value="작성취소"> 
+										
+										</td>
+									</tr>
+								</table>
+							</form>
+						 </div>
+						</div>
+						<!-- card body 끝 -->
+					</div>
+					<!-- 공지등록 card 끝 -->
+					
+				</div>
+				<!-- container 끝 -->
+			</main>
+		</div>
+		<!-- 내용 끝 -->
+	</div>
+	
+	<!-- script -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="dist/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="dist/assets/demo/chart-area-demo.js"></script>
+    <script src="dist/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="dist/assets/demo/datatables-demo.js"></script>  
+</body>
 </html>

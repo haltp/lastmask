@@ -24,9 +24,12 @@ public class DeleteExec implements Command {
 		vo.setMemberId(valeu);
 		
 		
-		vo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
+		vo.setProductNum(Integer.parseInt(request.getParameter("row")));
 		
+		//System.out.println(vo.getMemberId());
+		//System.out.println(vo.getProductNum());
 		int n=dao.delete(vo);
+		
 		
 		
 		

@@ -78,6 +78,40 @@ public class CartDao extends DAO {
 		}
 		return n;
 	}
+	
+	public int insert(CartVo vo) { //장바구니 추가
+		int n = 0;
+		String sql = "INSERT INTO CART VALUES(SEQCART.NEXTVAL, ?, ?, ?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getCartUser());
+			psmt.setInt(2, vo.getCartProduct());
+			psmt.setInt(3, vo.getCartSelect());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return n;
+	}
+	
+	//관리자 상품 삭제**
+		public int deleteAdmin(CartVo vo) {
+			int n=0;
+			String sql="DELETE FROM PRODUCT WHERE PRODUCTNUM IN(SELECT C.CARTPRODUCT FROM CART C WHERE C.CARTPRODUCT=?)";
+			
+			try {
+				psmt=conn.prepareStatement(sql);
+				psmt.setInt(1, vo.getCartProduct());
+				
+				n=psmt.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return n;
+			
+		}
 
 	public void close() { // close 메소드
 		try {

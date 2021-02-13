@@ -26,7 +26,7 @@ public class MyPageUpdate implements Command {
 
 		String viewPage = null;
 		if (n != 0) {
-			viewPage = "myPageForm.do";
+			viewPage = "myPageUpdateForm.do";
 		} else {
 			viewPage = "view/member/updateFail";
 		}

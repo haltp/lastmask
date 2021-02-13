@@ -21,10 +21,10 @@ public class MyPageUpdateForm implements Command {
 
 		vo.setMemberId(request.getParameter("row"));
 
-		HttpSession session = request.getSession();
-		String value = (String) session.getAttribute("memberId");
+		//HttpSession session = request.getSession();
+		//String value = (String) session.getAttribute("memberId");
 
-		vo.setMemberId(value);
+		//vo.setMemberId(value);
 
 		list = dao.select(vo);
 		request.setAttribute("list", list);

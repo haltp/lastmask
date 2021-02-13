@@ -11,8 +11,75 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="dist/css/styles.css" rel="stylesheet" />
+         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+   <style>
+table {
+  width:70%;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td {
+  padding: 15px;
+  text-align: left;
+}
+th {
+  padding: 15px;
+  text-align: center;
+}
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+#t01 tr:nth-child(odd) {
+ background-color: #fff;
+}
+#t01 th {
+  background-color: black;
+  color: white;
+}
+.insertBtn {
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: black;
+  justify-content: center;
+  display: flex;
+}
+.updateBtn{
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: black;
+  justify-content: center;
+  display: flex;
+}
+</style>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+ <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+		
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Sell List'],
+        <c:forEach var="ct" items="${chartList }">
+       		['${ct.chartProduct}', ${ct.chartProductQunt}],
+        </c:forEach>
+        ]);
+
+        var options = {
+          title: '판매 순위'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+</script> 
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -57,6 +124,7 @@
                     
                 </nav>
             </div>
+            <form action="" id="frm" name="frm" method="post">
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
@@ -64,44 +132,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
@@ -112,16 +143,21 @@
                                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
+                            
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar mr-1"></i>
-                                        Bar Chart Example
+                                         Chart
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><div id="piechart" style="width: 900px; height: 500px;"></div></div>
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
+                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
@@ -129,7 +165,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                <form action="" id="frm" name="frm" method="post">
+                                <!-- <form action="" id="frm" name="frm" method="post"> -->
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -140,6 +176,7 @@
 												<th>판 매 자</th>
 												<th>구 매 자</th>
 												<th>구 매 일</th>
+												<c:out value="${ list}"></c:out>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -147,6 +184,7 @@
                                         </tfoot>
                                         <tbody>
                                         <c:if test="${empty list}">
+                                        
 						<tr><td colspan="7" align="center">구매 내역이 없습니다.</td></tr>
 					</c:if>
 					<c:if test="${not empty list}">

@@ -20,9 +20,12 @@ public class SellView implements Command {
 		SellVo vo = new SellVo();
 		HttpSession session = request.getSession();
 		vo.setSellUser((String) session.getAttribute("memberId"));
+		//System.out.println(vo.getSellUser());
 
 		list = dao.selectList(vo);
+		
 		request.setAttribute("list", list);
+		
 		
 		return "view/sell/sellView";
 	}

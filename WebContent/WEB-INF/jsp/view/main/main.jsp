@@ -1,124 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>Freelancer - Start Bootstrap Theme</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
-	crossorigin="anonymous"></script>
-<!-- Google fonts-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="css/styles.css" rel="stylesheet" />
-
-<!-- script -->
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- 우편번호 api -->
-<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<!-- 우편번호 api -->
-<script type="text/javascript">
-	function formCheck() {
-		if (frm.memberPassword.value != frm.memberPassword1.value) {
-			alert("패스워드가 일치하지 않습니다.");
-			frm.memberPassword1.value = null;
-			frm.memberPassword1.focus();
-			return false;
-		}
-		return true;
-	}
-
-	function idCheck(str) {
-		var url = "idCheck.do?memberId=" + str;
-		if (str == "") {
-			alert("아이디를 입력하세요.");
-			frm.memberId.focus();
-		} else {
-			window.open(url, "아이디 중복확인",
-					"width=600, height=200, top=100, left=100");
-		}
-	}
-	function openZipSearch() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				$('[name=memberZipcode]').val(data.zonecode); // 우편번호 (5자리)
-				$('[name=memberAddress]').val(data.address);
-			}
-		}).open();
-	}
-</script>
-<jsp:include page="menu.jsp"></jsp:include>
-</head>
-<body id="page-top">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>메인페이지</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    
+    <body id="page-top">
+    
 	<!-- nav -->
+	<jsp:include page="menu.jsp"></jsp:include>
+	
 	<!-- Masthead-->
-	<!--   Heading Row-->
-	<div class="row1 align-items-center my-5">
-		<div class="col-lg-12">
-			<div id="carouselExampleIndicators" class="carousel slide my-4"
-				data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0"
-						class="active"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				</ol>
+	<header class="masthead">
+       <div class="row1 align-items-center my-5">
+			<div class="col-lg-12">
+				<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
-						<img class="d-block img-fluid" src="img/well001.JPG"
-							alt="First slide">
+						<img class="d-block img-fluid" src="/MaskTest/images/bannerWell001.JPG" alt="First slide">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="img/well002.JPG"
-							alt="Second slide">
+						<img class="d-block img-fluid" src="/MaskTest/images/bannerWell002.JPG" alt="Second slide">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="img/well003.JPG"
-							alt="Third slide">
+						<img class="d-block img-fluid" src="/MaskTest/images/bannerWell003.JPG" alt="Third slide">
 					</div>
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators"
-					role="button" data-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span></a>
-					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span></a>
+						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> 
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!--  <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                Masthead Avatar Image
-                <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="" />
-                Masthead Heading
-                <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
-                Icon Divider
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                Masthead Subheading
-                <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
-            </div>
-        </header>
-	Portfolio Section -->
+   </header>
+        
+        
+	<!--Portfolio Section -->
 	<section class="page-section portfolio" id="portfolio">
 		<div class="container">
 			<!-- Portfolio Section Heading-->
@@ -228,89 +169,23 @@
 			</div>
 		</div>
 	</section>
+	<!--Portfolio Section 끝 -->
+	
+	
 	<!-- About Section-->
-	<section class="page-section bg-primary text-white mb-0" id="about">
-		<div class="container">
-			<!-- About Section Heading-->
-			<h2
-				class="page-section-heading text-center text-uppercase text-white">About</h2>
-			<!-- Icon Divider-->
-			<div class="divider-custom divider-light">
-				<div class="divider-custom-line"></div>
-				<div class="divider-custom-icon">
-					<i class="fas fa-star"></i>
-				</div>
-				<div class="divider-custom-line"></div>
-			</div>
-			<!-- About Section Content-->
-			<div class="row">
-				<div class="col-lg-4 ml-auto">
-					<p class="lead">Freelancer is a free bootstrap theme created by
-						Start Bootstrap. The download includes the complete source files
-						including HTML, CSS, and JavaScript as well as optional SASS
-						stylesheets for easy customization.</p>
-				</div>
-				<div class="col-lg-4 mr-auto">
-					<p class="lead">You can create your own custom avatar for the
-						masthead, change the icon in the dividers, and add your email
-						address to the contact form to make it fully functional!</p>
-				</div>
-			</div>
-			<!-- About Section Button-->
-			<div class="text-center mt-4">
-				<a class="btn btn-xl btn-outline-light"
-					href="https://startbootstrap.com/theme/freelancer/"> <i
-					class="fas fa-download mr-2"></i> Free Download!
-				</a>
-			</div>
-		</div>
-	</section>
+	<jsp:include page="about.jsp"></jsp:include>
 
 	<!-- Footer-->
-	<footer class="footer text-center">
-		<div class="container">
-			<div class="row">
-				<!-- Footer Location-->
-				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="text-uppercase mb-4">Location</h4>
-					<p class="lead mb-0">
-						2215 John Daniel Drive <br /> Clark, MO 65243
-					</p>
-				</div>
-				<!-- Footer Social Icons-->
-				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="text-uppercase mb-4">Around the Web</h4>
-					<a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-facebook-f"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-twitter"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-linkedin-in"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-dribbble"></i></a>
-				</div>
-				<!-- Footer About Text-->
-				<div class="col-lg-4">
-					<h4 class="text-uppercase mb-4">About Freelancer</h4>
-					<p class="lead mb-0">
-						Freelance is a free to use, MIT licensed Bootstrap theme created
-						by <a href="http://startbootstrap.com">Start Bootstrap</a> .
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<jsp:include page="footer.jsp"></jsp:include>
+	
 	<!-- Copyright Section-->
-	<div class="copyright py-4 text-center text-white">
-		<div class="container">
-			<small>Copyright © Your Website 2020</small>
-		</div>
-	</div>
+	<jsp:include page="copyright.jsp"></jsp:include>
+	
 	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
-	<div class="scroll-to-top d-lg-none position-fixed">
-		<a class="js-scroll-trigger d-block text-center text-white rounded"
-			href="#page-top"><i class="fa fa-chevron-up"></i></a>
-	</div>
+	<jsp:include page="scroll.jsp"></jsp:include>
+	
+	
+	
 	<!-- Portfolio Modals-->
 	<!-- Portfolio Modal 1-->
 	<div class="portfolio-modal modal fade" id="portfolioModal1"
@@ -321,7 +196,7 @@
 				<button class="close" type="button" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true"><i class="fas fa-times"></i></span>
-				</button>
+				</button><!--  -->
 				<div class="modal-body text-center">
 					<div class="container">
 						<div class="row justify-content-center">
@@ -329,7 +204,7 @@
 								<!-- Portfolio Modal - Title-->
 								<h2
 									class="portfolio-modal-title text-secondary text-uppercase mb-0"
-									id="portfolioModal1Label">Log Cabin</h2>
+									id="portfolioModal1Label" name="portfolioModal1Label"></h2>
 								<!-- Icon Divider-->
 								<div class="divider-custom">
 									<div class="divider-custom-line"></div>
@@ -357,6 +232,9 @@
 			</div>
 		</div>
 	</div>
+	
+
+	
 	<!-- Portfolio Modal 2-->
 	<div class="portfolio-modal modal fade" id="portfolioModal2"
 		tabindex="-1" role="dialog" aria-labelledby="portfolioModal2Label"

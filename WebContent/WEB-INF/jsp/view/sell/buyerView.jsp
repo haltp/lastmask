@@ -4,61 +4,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- Bootstrap core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<style>
-table {
-  width:70%;
-}
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-td {
-  padding: 15px;
-  text-align: left;
-}
-th {
-  padding: 15px;
-  text-align: center;
-}
-#t01 tr:nth-child(even) {
-  background-color: #eee;
-}
-#t01 tr:nth-child(odd) {
- background-color: #fff;
-}
-#t01 th {
-  background-color: black;
-  color: white;
-}
-.insertBtn {
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-  justify-content: center;
-  display: flex;
-}
-.updateBtn{
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-  justify-content: center;
-  display: flex;
-}
-</style>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" /> 
+	
+<title>장바구니</title>
+
+<!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+
+	<!-- link -->
+	<link href="css/styles.css" rel="stylesheet" />
+  	<!-- <link href="dist/css/styles.css" rel="stylesheet" />  -->
+	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+	  
+	<!-- script -->
+ 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+
+
 </head>
-<body>
-<jsp:include page="../main/menu.jsp"></jsp:include>
-	<div align="center">
-		<h1>구매 내역 페이지</h1>
-		<div>
+<body class="sb-nav-fixed">
+
+ <!-- Navigation-->
+<jsp:include page="../main/menu.jsp"></jsp:include> 
+<div id="layoutSidenav">
+<div id="layoutSidenav_content">
+<div class="container-fluid">
+<main><br /><br /><br />  
+
+	<div class="table-responsive">
 			<form action="" id="frm" name="frm" method="post">
-				<table border="1">
+			<input type="hidden" name="cartProduct" id="cartProduct">
+			<input type="hidden" name="cartNumber" id="cartNumber">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<br /><br /><br /><br />
+				<thead>
 					<tr>
 						<th>판매 번호</th>
 						<th>상품 번호</th>
@@ -68,6 +56,8 @@ th {
 						<th>판 매 자</th>
 						<th>구 매 일</th>
 					</tr>
+					</thead>
+					<tbody>
 					<c:if test="${empty buyList}">
 						<tr><td colspan="7" align="center">구매 내역이 없습니다.</td></tr>
 					</c:if>
@@ -84,10 +74,32 @@ th {
 							</tr> 
 						</c:forEach>
 					</c:if>
-				</table><br/>
-				<button type="button" onclick="location.href = 'main.do'">홈으로</button>
+					</tbody>
+				</table>
 			</form>
 		</div>
 	</div>
+	<br /><br /><br /><br />
+	
+	<!-- Footer-->
+  		<jsp:include page="../main/footer.jsp"></jsp:include>
+        <!-- Copyright Section-->
+        <jsp:include page="../main/copyright.jsp"></jsp:include>
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+        <jsp:include page="../main/scroll.jsp"></jsp:include>
+        
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+         <script src="assets/mail/contact_me.js"></script> 
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        
+
 </body>
 </html>

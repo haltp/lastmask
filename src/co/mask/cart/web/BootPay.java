@@ -1,6 +1,7 @@
 package co.mask.cart.web;
 
 import javax.servlet.http.HttpServletRequest;import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import co.mask.cart.dao.CartDao;
 import co.mask.cart.vo.CartVo;
@@ -14,7 +15,11 @@ public class BootPay implements Command {
 		CartDao dao = new CartDao();
 		CartVo vo = new CartVo();
 		vo.setCartProduct(Integer.parseInt(request.getParameter("cartProduct")));
-		vo.setCartUser(request.getParameter("cartUser"));
+		
+		HttpSession session = request.getSession();
+		//vo.setCartUser(request.getParameter("memberId"));
+		vo.setCartUser((String) session.getAttribute("memberId"));
+		System.out.println(vo.getCartUser());
 		
 		dao.select(vo);
 		request.setAttribute("vo", vo);

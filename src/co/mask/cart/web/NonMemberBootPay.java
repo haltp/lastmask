@@ -14,7 +14,7 @@ public class NonMemberBootPay implements Command {
 		ProductDao dao = new ProductDao();
 		ProductVo vo = new ProductVo();
 		vo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
-		
+		System.out.println(vo.getProductNum());
 		dao.select(vo);
 		request.setAttribute("vo", vo);
 		

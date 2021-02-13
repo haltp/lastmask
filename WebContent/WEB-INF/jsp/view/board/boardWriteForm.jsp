@@ -3,55 +3,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
 <title>게시글 등록하기</title>
+	<!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
 
-<style type="text/css">
-#title {
-	height: 16;
-	font-family: '돋움';
-	font-size: 12;
-	text-align: center;
-}
-</style>
+	<!-- link -->
+	<link href="css/styles.css" rel="stylesheet" />
+  	<!-- <link href="dist/css/styles.css" rel="stylesheet" />  -->
+	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+	  <!-- script -->
+ 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+	
+
 
 </head>
 <body>
 <jsp:include page="../main/menu.jsp" />
 	<div id="wrap" align="center">
-		<h1>게시글 등록</h1>
-
-		<form name="boardForm" method="post" action="boardWirte.do" 
-			enctype="multipart/form-data">
-			<input type="hidden" name="boardWriter"
-				value="${sessionScope.sessionID }">
-			<table  border="1">
-				<tr>
-					<th>작성자</th>
-					<td><input type="text" name="name"></td>
-				</tr>
-				<tr>
-					<th>제목</th>
-					<td><input type="text" name="boardTitle"  /></td>
-				</tr>
-				<tr>
-					<td id="title">내용</td>
-					<td><textarea name="#" rows="10" cols="40" ></textarea></td>
-				</tr>
-				<tr>
-					<td id="title">파일첨부</td>
-					<td><input type="file" name="boardFile" /></td>
-				</tr>
-
-				<tr align="center" valign="middle">
-					<td colspan="5"><input type="submit" value="등록"> 
-					<input type="reset" value="작성취소"> 
-					<input type="button" onclick="location.href = 'boardListForm.do'" value="목록">
-					</td>
-				</tr>
-			</table>
-		</form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<div class="card mb-4">
+                       <div class="card-header">
+	                      <i class="fas fa-table mr-1"></i>
+                                문의사항 등록
+                        </div>
+                        <!-- card body -->
+						<div class="card-body">
+                           <div class="table-responsive">
+					          <form id="boardForm" name="boardForm" action="boardWirte.do" method="post">
+								<input type="hidden" name="boardWriter" value="${memberId }">
+								<input type="hidden" name="boardValue" value="questions">
+								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									 <tr align="center">
+										<th>작성자</th>
+										<td><input style="border:none" type="text"  id="boardWriter" name="boardWriter" size="130" value="${memberId }" readonly></td>
+									</tr> 
+									<tr align="center">
+										<th>제목</th>
+										<td><input style="border:none" type="text" id="boardTitle" name="boardTitle" size="150" required></td>
+									</tr>
+									<tr align="center">
+										<th>내용</th>
+										<td><textarea style="border:none" id="boardContent" name="boardContent" rows="10" cols="150" ></textarea></td>
+									</tr>
+								
+									<tr align="center" valign="middle">
+										<td colspan="5"><input type="submit" value="등록"> 
+										<input type="reset" value="작성취소"> 
+										
+										</td>
+									</tr>
+								</table>
+							</form>
+						 </div>
+						</div>
+						<!-- card body 끝 -->
+					</div>
+					<!-- 공지등록 card 끝 -->
+					
+				</div>
+				<!-- container 끝 -->
+			</main>
+		</div>
+		<!-- 내용 끝 -->
 	</div>
+	
+	
+	</div>
+	
+		<!-- Footer-->
+  		<jsp:include page="../main/footer.jsp"></jsp:include>
+        <!-- Copyright Section-->
+        <jsp:include page="../main/copyright.jsp"></jsp:include>
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+        <jsp:include page="../main/scroll.jsp"></jsp:include>
+        
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+         <script src="assets/mail/contact_me.js"></script> 
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+	
+	
 </body>
 
 </html>

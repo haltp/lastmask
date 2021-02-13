@@ -1,105 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
+		<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>구매페이지</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+  
 
-<title>메인 페이지</title>
-<style>
-* {
-  transition: all 0.3s ease-out;
-}
-
-html,
-body {
-  height: 100%;
-  font-family: "Nunito", sans-serif;
-  font-size: 16px;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-h3 {
-  color: #262626;
-  font-size: 17px;
-  line-height: 24px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-p {
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 20px;
-  color: #666666;
-
-  &.small {
-    font-size: 14px;
-  }
-}
-
-
-
-.card {
-  display: block;
-  top: 0px;
-  position: relative;
-  max-width: 262px;
-  background-color: #f2f8f9;
-  border-radius: 4px;
-  padding: 32px 24px;
-  margin: 12px;
-  text-decoration: none;
-  z-index: 0;
-  overflow: hidden;
-  border: 1px solid #f2f8f9;
-
-  &:hover {
-    transition: all 0.2s ease-out;
-    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
-    top: -4px;
-    border: 1px solid #cccccc;
-    background-color: white;
-  }
-
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: -16px;
-    right: -16px;
-    background: #00838d;
-    height: 32px;
-    width: 32px;
-    border-radius: 32px;
-    transform: scale(2);
-    transform-origin: 50% 50%;
-    transition: transform 0.15s ease-out;
-  }
-
-  &:hover:before {
-    transform: scale(2.15);
-  }
-}
-
-}
-</style>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script type="text/javascript">
+ 
+ 
+ 
+  function buyNow(str) {
+			var win = window.open("", "PopupWin", "width=680,height=800");
+			frm1.target = "PopupWin";
+			frm1.cartProduct.value = str;
+			frm1.action = "bootPay.do";
+			frm1.submit();
+ } 
 
 
  $(function () {
 
    $.ajax({
-     url: '/MaskProject/getProductServletTest',
+     url: '/MaskTest/getProductServletTest',
      type: 'get',
      dataType: 'json',
      success: showContents,
@@ -122,42 +61,112 @@ p {
      //console.log(val.productNum, val.productName, val.productPrice);
      //console.log(val);
      
-     let div1, div2;
-     let elem_1, elem_2;
-     div1 = $('<div />').addClass("col-md-4 mb-5");
      
-     div2 = $('<div />').addClass("card h-100");
+     let div3;
+     let elem_3;
      
-	elem_1 = $('<div />').addClass("card-body");
-	
-	let e1_h2 = $('<h2 />').addClass("card-title");
-	let e1_img = $('<img />').attr('src','/MaskProject/img/'+val.image);
-	e1_img.addClass("card-img-top");
+     div3 = $('<div />').addClass("row justify-content-center");
+    elem_3 = $('<div />').addClass("col-md-6 col-lg-4 mb-5");
+    let elem_4 = $('<div />').addClass("portfolio-item mx-auto").attr('data-toggle','modal').attr('data-target','#portfolioModal'+val.productNum);
+    let e4_e1 = $('<div />').addClass("portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100");
+    let e4_e1_e1 = $('<div />').addClass("portfolio-item-caption-content text-center text-white");
+    let e4_e1_e1_i = $('<i />').addClass("fas fa-plus fa-3x");
+    let e4_img = $('<img />').addClass("img-fluid").attr('src','images/'+val.image);
     
-    elem_2 = $('<div />').addClass("card-footer");
-	
-	let e2_p = $('<p />').addClass("card-text").html(val.productName);
-	
-	 let krw_price = new Intl.NumberFormat('ko-KR',
-		      { style: 'currency', currency: 'KRW' }).format(val.productPrice);
-	
-	let e2_h5 = $('<h5 />').html(krw_price);
-	
-	let e2_h5_2 = $('<h5 />').html(val.productQunt);
-	
-    
-    elem_1.append(e1_img);
-    elem_1.append(e1_h2);
-    elem_2.append(e2_p);
-    elem_2.append(e2_h5);
-    elem_2.append(e2_h5_2);
+    e4_e1_e1.append(e4_e1_e1_i);
+    e4_e1.append(e4_e1_e1);
+    elem_4.append(e4_e1);
+    elem_4.append(e4_img);
+    elem_3.append(elem_4);
     
     
-     
-   	 $(div2).append(elem_1);
-   	 $(div2).append(elem_2);
-     $(div1).append(div2);   
-     $('.row').append(div1);
+    $(div3).append(elem_3);
+    
+    $('.portContainer').append(div3);
+    
+    //modal
+    
+    let div4, div5,div6;
+    
+    div4 = $('<div />').addClass("portfolio-modal modal fade").attr('id','portfolioModal'+val.productNum).attr('tabindex','-1').attr('role','dialog').attr('aria-labelledby','portfolioModal'+val.productNum+'Label').attr('aria-hidden','true');
+    div5 = $('<div />').addClass("modal-dialog modal-xl").attr('role','document');
+    div6 = $('<div />').addClass("modal-content");
+    
+    
+    let div6_e1 = $('<button />').addClass("close").attr('type','button').attr('data-dismiss', 'modal').attr('aria-label','Close');
+    let div6_e1_e1 = $('<span />').attr('aria-hidden', 'ture');
+    let div6_e1_e1_e1=$('<i />').addClass("fas fa-times");
+   
+    
+
+    
+    let div6_e2 = $('<div />').addClass("modal-body text-center");
+    let div6_e2_e1=$('<div />').addClass("container");
+    let div6_e2_e1_e1=$('<div />').addClass("row justify-content-center");
+    let div6_e2_e1_e1_e1=$('<div />').addClass("col-lg-8");
+    let div6_e2_e1_e1_e1_h=$('<h2 />').addClass("portfolio-modal-title text-secondary text-uppercase mb-0").attr('id','portfolioModal'+val.productNum+'Label');
+    
+    $(div6_e2_e1_e1_e1_h).html(val.productName);
+    
+    let div6_e2_e1_e1_e1_h_input = $('<input />').attr('type','text').attr('name','modalName').attr('id','modalName').attr('value', val.productName);
+    let div6_e2_e1_e1_e1_e1=$('<div />').addClass("divider-custom");
+    let div6_e2_e1_e1_e1_e1_e1=$('<div />').addClass("divider-custom-line");
+    let div6_e2_e1_e1_e1_e1_e2=$('<div />').addClass("divider-custom-icon");
+    let div6_e2_e1_e1_e1_e1_e2_i=$('<i />').addClass("fas fa-star");
+    let div6_e2_e1_e1_e1_e1_e3=$('<div />').addClass("divider-custom-line");
+    
+    let div6_e2_e1_e1_e1_img=$('<img />').addClass("img-fluid rounded mb-5").attr('src','images/'+val.image);
+    let div6_e2_e1_e1_e1_p=$('<p />').addClass("mb-5").html("가격 :"+val.productPrice);
+    let div6_e2_e1_e1_e1_p2=$('<p />').addClass("mb-5").html("재고 :"+val.productQunt);
+   
+    let div6_e2_e1_e1_e1_button=$('<button />').addClass("btn btn-primary").html("구매하기").attr('onclick','buyNow('+val.productNum+')');
+    let div6_e2_e1_e1_e1_cIf2=$('<c />').attr('test','${memberId ne null}')
+    let div6_e2_e1_e1_e1_button2=$('<button />').addClass("btn btn-primary").html('회원장바구니').attr('onclick','location.href="inputCart.do?row='+val.productNum+'"');
+    let div6_e2_e1_e1_e1_cIf3=$('<c />').attr('test','${memberId eq null}')
+    let div6_e2_e1_e1_e1_button3=$('<button />').addClass("btn btn-primary").html('비회원장바구니').attr('onclick','location.href="nonMemberCart.do?row='+val.productNum+'"');
+    let div6_e2_e1_e1_e1_button_i=$('<i />').addClass("fas fa-times fa-fw");
+    
+   
+    
+    
+    $(div6_e2_e1_e1_e1_e1).append(div6_e2_e1_e1_e1_e1_e1);
+    div6_e2_e1_e1_e1_e1_e2.append(div6_e2_e1_e1_e1_e1_e2_i);
+    $(div6_e2_e1_e1_e1_e1).append(div6_e2_e1_e1_e1_e1_e2);
+    $(div6_e2_e1_e1_e1_e1).append(div6_e2_e1_e1_e1_e1_e3);
+    
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_h);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_e1);
+  
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_img);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_p);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_p2);
+    
+   
+    
+    div6_e2_e1_e1_e1_button.append(div6_e2_e1_e1_e1_button_i);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_button);
+    $(div6_e2_e1_e1_e1_cIf2).append(div6_e2_e1_e1_e1_button2);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_cIf2);
+    $(div6_e2_e1_e1_e1_cIf3).append(div6_e2_e1_e1_e1_button3);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_cIf3);
+    
+    
+    
+    $(div6_e2_e1_e1).append(div6_e2_e1_e1_e1);
+    $(div6_e2_e1).append(div6_e2_e1_e1);
+    $(div6_e2).append(div6_e2_e1);
+    
+    $(div6).append(div6_e2);
+    
+    div6_e1_e1.append(div6_e1_e1_e1);
+    div6_e1.append(div6_e1_e1);
+    $(div6).append(div6_e1);
+    
+    $(div5).append(div6);
+    $(div4).append(div5);
+   
+    $('#page-top').append(div4);
+    
      
    }
 
@@ -170,69 +179,45 @@ p {
 
 
  </script>
- 
- <jsp:include page="../main/menu.jsp"></jsp:include>
- 
+
 </head>
-<body>
-
-
- 
- 
- 
-  
-  <div class="container">
-  
-      <!-- Heading Row -->
-    <div class="row align-items-center my-5">
-      <div class="col-lg-7">
-        <img class="img-fluid rounded mb-4 mb-lg-0" src="img/mask1.jpg" alt="">
-              
-        <br>
-      <br>
-      <br>
-      <br>
-      </div>
-
-      <!-- /.col-lg-8 -->
-      <div class="col-lg-5">
-        <h1 class="font-weight-light">당신이 원하는 마스크</h1>
-        <p>이 마스크야 말로 가격과 디자인을 모두 챙긴..</p>
-        <a class="btn btn-primary" href="#">구매하세요!</a>
-              <br>
-      <br>
-      <br>
-      <br>
-      </div>
-
-      
-      <!-- /.col-md-4 -->
-    </div>
+<body id="page-top">
+<!-- nav -->
+<jsp:include page="../main/menu.jsp"></jsp:include>  
     
-    <!-- /.row -->
-
-    <!-- <div class="card text-white bg-secondary my-5 py-4 text-center"> -->
-    <!-- Call to Action Well -->
-  <!--     <div class="card-body">
-        <p class="text-white m-0"> 코로나 바이러스를 효과적으료 예방할수있는 마스크 저희와 함께 하세요. 
+<section class="page-section portfolio" id="portfolio" name="portfolio"><br/><br/><br/>
+ <div class="container portContainer">
+ <!-- Portfolio Section Heading--> 
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Purchase</h2>
+      <!-- Icon Divider-->
+      <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+          <div class="divider-custom-line"></div>
       </div>
-    </div> -->
-  
-   <!-- Content Row -->
-<!--    <div class="row1">
-  	
-  </div>  -->
-     <!-- /.row -->
+	
+	</div>
+ </section>
+ <div class="portrow">
 
-  </div>
-  <!-- /.container -->
+ </div>
+ 
+ 
+ <!-- Bootstrap core JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Third party plugin JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<!-- Contact form JS-->
+	<script src="assets/mail/jqBootstrapValidation.js"></script>
+	<script src="assets/mail/contact_me.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+ 
+ 
   
-  
-  
-  
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

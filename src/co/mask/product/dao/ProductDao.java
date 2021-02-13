@@ -18,9 +18,37 @@ public class ProductDao extends DAO{
 		ArrayList<ProductVo> list = new ArrayList<ProductVo>();
 		ProductVo vo;
 		
-		String sql = "SELECT * FROM PRODUCT ORDER BY PRODUCTNUM";
+		String sql = "SELECT * FROM PRODUCT ORDER BY PRODUCTNUM desc";
 		try {
 			psmt=conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				vo=new ProductVo();
+				vo.setProductNum(rs.getInt("productNum"));
+				vo.setProductName(rs.getString("productName"));
+				vo.setProductQunt(rs.getInt("productQunt"));
+				vo.setProductPrice(rs.getInt("productPrice"));
+				vo.setProductSeller(rs.getString("productSeller"));
+				vo.setImage(rs.getString("image"));
+				list.add(vo);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
+	//판매자 상품조회
+	public ArrayList<ProductVo> selectList2(ProductVo vo) {
+		ArrayList<ProductVo> list = new ArrayList<ProductVo>();
+		
+		
+		String sql = "SELECT * FROM PRODUCT where productseller=? ORDER BY PRODUCTNUM";
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, vo.getMemberId());
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo=new ProductVo();

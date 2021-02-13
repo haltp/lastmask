@@ -24,7 +24,7 @@ public class UpdateExec implements Command {
 		int n = dao.update(vo);
 		request.setAttribute("vo", vo);
 
-		return "showProduct.do";
+		return "showProductSeller.do";
 	}
 
 }

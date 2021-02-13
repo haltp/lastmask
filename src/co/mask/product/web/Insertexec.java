@@ -20,10 +20,19 @@ public class Insertexec implements Command {
 		vo.setProductPrice(Integer.parseInt(request.getParameter("productPrice")));
 		vo.setProductSeller(request.getParameter("ProductSeller"));
 		vo.setImage(request.getParameter("image"));
+		
+		System.out.println(request.getParameter("productName"));
+		System.out.println(Integer.parseInt(request.getParameter("productQunt")));
+		System.out.println(Integer.parseInt(request.getParameter("productPrice")));
+		System.out.println(request.getParameter("ProductSeller"));
+		System.out.println(request.getParameter("image"));
+		
+		
 
 		int n = dao.insert(vo);
 		request.setAttribute("vo", vo);
 
+		
 		return "showProductSeller.do";
 	}
 

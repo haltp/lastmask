@@ -28,7 +28,32 @@ public class BoardDao extends DAO {
 	public ArrayList<BoardVo> selectList() { // 조회
 		ArrayList<BoardVo> list = new ArrayList<BoardVo>();
 		BoardVo vo;
-		String sql = "SELECT * FROM BOARD ORDER BY 1 DESC";
+		String sql = "SELECT * FROM BOARD where boardvalue='notice' ORDER BY 1 DESC";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				vo = new BoardVo();
+				vo.setBoardNumber(rs.getInt("boardnumber"));
+				vo.setBoardTitle(rs.getString("boardtitle"));
+				vo.setBoardWriter(rs.getString("boardwriter"));
+				vo.setBoardContent(rs.getString("boardcontent"));
+				vo.setBoardDate(rs.getDate("boarddate"));
+				vo.setBoardValue(rs.getString("boardvalue"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
+	public ArrayList<BoardVo> selectList2() { // 조회
+		ArrayList<BoardVo> list = new ArrayList<BoardVo>();
+		BoardVo vo;
+		String sql = "SELECT * FROM BOARD where boardvalue='questions' ORDER BY 1 DESC";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -50,37 +75,34 @@ public class BoardDao extends DAO {
 		return list;
 	}
 
-	public boolean boardInsert(BoardVo vo) {
-		// 글쓰기
-		boolean result = false;
+	public int boardInsert(BoardVo vo) {
+		int n = 0;
+		
+		String sql = "INSERT INTO BOARD " + "(BOARDNUMBER, BOARDWRITER, BOARDTITLE, BOARDCONTENT, boardvalue)"
+				+ "VALUES(board_seq.nextval,?,?,?,?)";
 
 		try {
-			String sql = "INSERT INTO BOARD " + "( BOARDNUMBER, BOARDWRITER, BOARDTITLE, BOARDCONTENT, BOARDFILE)"
-					+ "VALUES(?,?,?,?,?)";
-
-			int n = vo.getBoardNumber();
-
-			psmt = conn.prepareStatement(sql.toString());
-			psmt.setInt(1, vo.getBoardNumber());
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, vo.getBoardWriter());
 			psmt.setString(2, vo.getBoardTitle());
-			psmt.setString(3, vo.getBoardWriter());
-			psmt.setString(4, vo.getBoardContent());
-			psmt.setString(5, vo.getBoardFile());
-
+			psmt.setString(3, vo.getBoardContent());
+			psmt.setString(4, vo.getBoardValue());
+			
 			n = psmt.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close();
+			close(); 
 		}
-		return result;
+		return n;
 	}
+	
 
 	public int deleteBoard(BoardVo vo) {
 		// 삭제 쿼리
 		int n = 0;
-		String sql = "DELETE FROM BOARD WHERE NUM=?";
+		String sql = "DELETE FROM BOARD WHERE BOARDNUMBER=?";
 		try {
 
 			psmt = conn.prepareStatement(sql);
@@ -160,6 +182,26 @@ public class BoardDao extends DAO {
 		}
 		
 		return vo;
+	}
+
+	public int boardUpdate(BoardVo vo) {
+		int n = 0;
+		String sql = "UPDATE BOARD SET BOARDTITLE=?, BOARDCONTENT=?, boarddate=sysdate WHERE BOARDNUMBER=?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getBoardTitle());
+			psmt.setString(2, vo.getBoardContent());
+			psmt.setInt(3, vo.getBoardNumber());
+			n = psmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		
+		return n;
 	}
 
 }

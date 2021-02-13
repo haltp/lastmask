@@ -51,7 +51,7 @@ public class productImageUpload extends HttpServlet {
 				}
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
-				out.println("opener.frm.image.value='" + filename + "';");
+				out.println("opener.frm1.image.value='" + filename + "';");
 				out.println("window.close();");
 				out.println("</script>");
 				
