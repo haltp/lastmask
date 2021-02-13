@@ -24,15 +24,6 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script type="text/javascript">
  
- 
- 
-  function buyNow(str) {
-			var win = window.open("", "PopupWin", "width=680,height=800");
-			frm1.target = "PopupWin";
-			frm1.cartProduct.value = str;
-			frm1.action = "bootPay.do";
-			frm1.submit();
- } 
 
 
  $(function () {
@@ -103,6 +94,8 @@
     let div6_e2 = $('<div />').addClass("modal-body text-center");
     let div6_e2_e1=$('<div />').addClass("container");
     let div6_e2_e1_e1=$('<div />').addClass("row justify-content-center");
+    
+    let div6_e2_e1_e1_frm=$('<form />').attr('name','frm1').attr('method','post');
     let div6_e2_e1_e1_e1=$('<div />').addClass("col-lg-8");
     let div6_e2_e1_e1_e1_h=$('<h2 />').addClass("portfolio-modal-title text-secondary text-uppercase mb-0").attr('id','portfolioModal'+val.productNum+'Label');
     
@@ -115,15 +108,18 @@
     let div6_e2_e1_e1_e1_e1_e2_i=$('<i />').addClass("fas fa-star");
     let div6_e2_e1_e1_e1_e1_e3=$('<div />').addClass("divider-custom-line");
     
+    
     let div6_e2_e1_e1_e1_img=$('<img />').addClass("img-fluid rounded mb-5").attr('src','images/'+val.image);
     let div6_e2_e1_e1_e1_p=$('<p />').addClass("mb-5").html("가격 :"+val.productPrice);
     let div6_e2_e1_e1_e1_p2=$('<p />').addClass("mb-5").html("재고 :"+val.productQunt);
-   
-    let div6_e2_e1_e1_e1_button=$('<button />').addClass("btn btn-primary").html("구매하기").attr('onclick','buyNow('+val.productNum+')');
-    let div6_e2_e1_e1_e1_cIf2=$('<c />').attr('test','${memberId ne null}')
-    let div6_e2_e1_e1_e1_button2=$('<button />').addClass("btn btn-primary").html('회원장바구니').attr('onclick','location.href="inputCart.do?row='+val.productNum+'"');
-    let div6_e2_e1_e1_e1_cIf3=$('<c />').attr('test','${memberId eq null}')
-    let div6_e2_e1_e1_e1_button3=$('<button />').addClass("btn btn-primary").html('비회원장바구니').attr('onclick','location.href="nonMemberCart.do?row='+val.productNum+'"');
+    let div6_e2_e1_e1_e1_p3=$('<p />').addClass("mb-5").html("구매수량:")
+    let div6_e2_e1_e1_e1_p3_input=$('<input />').attr('type','text').attr('name','amount'+val.productNum).attr('id','amount'+val.productNum);
+    
+    
+    
+    
+    let div6_e2_e1_e1_e1_button=$('<button />').addClass("btn btn-primary").html("구매하기").attr('onclick','buyNow('+val.productNum+','+val.productPrice+'); return false;'); 
+    let div6_e2_e1_e1_e1_button2=$('<button />').addClass("btn btn-primary").html('장바구니').attr('onclick','gotoCart('+val.productNum+'); return false;');
     let div6_e2_e1_e1_e1_button_i=$('<i />').addClass("fas fa-times fa-fw");
     
    
@@ -141,18 +137,26 @@
     $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_p);
     $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_p2);
     
+    $(div6_e2_e1_e1_e1_p3).append(div6_e2_e1_e1_e1_p3_input)
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_p3);
+    
+    
+    
+    
    
     
     div6_e2_e1_e1_e1_button.append(div6_e2_e1_e1_e1_button_i);
     $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_button);
-    $(div6_e2_e1_e1_e1_cIf2).append(div6_e2_e1_e1_e1_button2);
-    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_cIf2);
-    $(div6_e2_e1_e1_e1_cIf3).append(div6_e2_e1_e1_e1_button3);
-    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_cIf3);
+
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_button2);
+   
+    
+
+    $(div6_e2_e1_e1_frm).append(div6_e2_e1_e1_e1);
+    $(div6_e2_e1_e1).append(div6_e2_e1_e1_frm);
     
     
-    
-    $(div6_e2_e1_e1).append(div6_e2_e1_e1_e1);
+   
     $(div6_e2_e1).append(div6_e2_e1_e1);
     $(div6_e2).append(div6_e2_e1);
     
@@ -178,6 +182,25 @@
  } //end of showContents
 
 
+ function gotoCart(str){
+	var valueById = $('input[name=amount'+str+']').val();
+	 location.href="inputCart.do?amount="+valueById+"&productNum="+str;
+ }
+ 
+  function buyNow(str,str1) {
+	  
+	  var valueById = $('input[name=amount'+str+']').val();
+	  
+		 location.href="bootPayImm.do?amount="+valueById+"&productNum="+str+"&productPrice="+str1;
+			//var win = window.open("", "PopupWin", "width=680,height=800");
+			//frm1.target = "PopupWin";
+			//frm1.amount.value = str1;
+			//location.href="main.do"
+			//frm1.action = "bootPayImm.do?row="+str+"&row1="+str1;
+			//frm1.submit();
+ } 
+
+ 
  </script>
 
 </head>

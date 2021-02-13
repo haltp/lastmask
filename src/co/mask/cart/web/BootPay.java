@@ -14,12 +14,16 @@ public class BootPay implements Command {
 		// 부트페이 결제 시스템
 		CartDao dao = new CartDao();
 		CartVo vo = new CartVo();
-		vo.setCartProduct(Integer.parseInt(request.getParameter("cartProduct")));
 		
 		HttpSession session = request.getSession();
-		//vo.setCartUser(request.getParameter("memberId"));
+		//vo.setCartProduct(Integer.parseInt(request.getParameter("row")));
+		
 		vo.setCartUser((String) session.getAttribute("memberId"));
-		System.out.println(vo.getCartUser());
+		vo.setCartNumber(Integer.parseInt(request.getParameter("cartNumber")));
+		vo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
+		
+		//System.out.println(vo.getCartProduct());
+		//System.out.println(vo.getCartUser());
 		
 		dao.select(vo);
 		request.setAttribute("vo", vo);
@@ -28,3 +32,4 @@ public class BootPay implements Command {
 	}
 
 }
+

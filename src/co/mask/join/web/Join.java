@@ -28,7 +28,7 @@ public class Join implements Command {
 		request.setAttribute("vo", vo);
 		
 		if (n != 0) {
-			viewPage = "loginForm.do";
+			viewPage = "view/join/joinSuccess";
 		}else {
 			viewPage = "view/join/joinFail";
 		}

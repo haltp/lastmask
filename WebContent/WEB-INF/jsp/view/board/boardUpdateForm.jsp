@@ -43,6 +43,8 @@
                            <div class="table-responsive">
 					          <form id="frm" name="frm" action="boardUpdate.do?row=${vo.boardNumber }" method="post">
 								<input type="hidden" name="boardWriter" value="${memberId }">
+								<input type="hidden" name="boardValue" value="${vo.boardValue }">
+								
 								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									 <!-- <tr>
 										<th>작성자</th>
@@ -56,6 +58,7 @@
 										<td id="title">내용</td>
 										<td><textarea style="border:none" name="boardContent" rows="10" cols="150" placeholder="${vo.boardContent }"></textarea></td>
 									</tr>
+									
 									<!-- <tr>
 										<td id="title">파일첨부</td>
 										<td><input type="file" name="boardFile" /></td>

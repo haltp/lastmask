@@ -174,6 +174,7 @@ public class BoardDao extends DAO {
 				vo.setBoardContent(rs.getString("boardcontent"));
 				vo.setBoardDate(rs.getDate("boarddate"));
 				vo.setBoardHit(rs.getInt("boardhit"));
+				vo.setBoardValue(rs.getString("boardvalue"));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

@@ -19,10 +19,26 @@ public class BoardUpdate implements Command {
 		vo.setBoardTitle(request.getParameter("boardTitle"));
 		vo.setBoardContent(request.getParameter("boardContent"));
 		
-		int n = dao.boardUpdate(vo);
+		
+		dao.boardUpdate(vo);
+		
+		String viewPage="";
+		
+		if("notice".equals(request.getParameter("boardValue"))) {
+			viewPage="adminBoard.do";
+		}
+		
+		else if("notice".equals(request.getParameter("boardValue2"))  ) {
+			viewPage="showBoardTest.do";
+			//viewPage="view/test/boardList";
+		}
+		
+		else if("questions".equals(request.getParameter("boardValue2")) ) {
+			viewPage="showBoardTest2.do";
+		}
 		
 		
-		return "adminBoard.do";
+		return viewPage;
 	}
 
 }

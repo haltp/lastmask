@@ -17,7 +17,25 @@ public class BoardDelete implements Command {
 		
 		dao.deleteBoard(vo);
 		
-		return "adminBoard.do";
+		String viewPage="";
+		
+		System.out.println(request.getParameter("row2"));
+		
+		if("notice".equals(request.getParameter("row2"))) {
+			viewPage="adminBoard.do";
+		}
+		
+		else if("notice".equals(request.getParameter("boardValue2"))  ) {
+			viewPage="showBoardTest.do";
+			//viewPage="view/test/boardList";
+		}
+		
+		else if("questions".equals(request.getParameter("boardValue2")) ) {
+			viewPage="showBoardTest2.do";
+		}
+		
+		
+		return viewPage;
 	}
 
 }

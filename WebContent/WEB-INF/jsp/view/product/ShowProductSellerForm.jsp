@@ -132,7 +132,7 @@
 									</tr>	
 									<tr align="center">
 										<th>판매자</th>
-										<td><input style="border:none" type="text" id="ProductSeller" name="ProductSeller" size="130" required></td>
+										<td><input style="border:none" type="text" id="ProductSeller" name="ProductSeller" size="130" value='${memberId }' readonly></td>
 									</tr>
 									<tr align="center">
 										<th>사진첨부</th>

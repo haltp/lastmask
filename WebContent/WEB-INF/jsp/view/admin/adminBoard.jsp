@@ -23,10 +23,10 @@
 			frm.action = "boardUpdateForm.do?row="+str;
 			frm.submit();
 		}
-		function deleteUser(str){
+		function deleteUser(str,str1){
 			var yn = confirm("정말 삭제하시겠습니까?");
 			if (yn) {
-				frm.action = "boardDelete.do?row="+str;
+				frm.action = "boardDelete.do?row="+str+"&row2="+str1;
 				frm.submit();
 			}
 		}
@@ -56,6 +56,7 @@
 						<div class="card-body">
                            <div class="table-responsive">
                               <form id="frm" name="frm" method="post">
+                              
                                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr align="center" style="background-color: silver">
@@ -70,6 +71,8 @@
 									 </thead>
 				 					 <tbody>
 										<c:forEach var="vo" items="${list }">
+										<input type="hidden" name="boardValue2" value="${vo.boardValue}">
+										<%-- <input type="hidden" name="boardValue" value="${vo.boardValue }"> --%>
 											<tr align="center">
 												<td width="70">${vo.boardNumber}</td>
 												<%-- <td width="70">${vo.boardWriter}</td> --%>
@@ -77,7 +80,7 @@
 												<%-- <td width="70">${vo.boardContent}</td> --%>
 												<td width="70">${vo.boardDate}</td>
 											    <td ><button type="button" onclick="updateUser('${vo.boardNumber}')">수정</button></td>
-												<td ><button type="submit" onclick="deleteUser('${vo.boardNumber}')">삭제</button></td> 
+												<td ><button type="submit" onclick="deleteUser(${vo.boardNumber}, '${vo.boardValue}')">삭제</button></td> 
 											</tr>
 										</c:forEach>
 									</tbody>

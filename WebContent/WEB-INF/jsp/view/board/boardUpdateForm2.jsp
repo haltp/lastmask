@@ -60,6 +60,8 @@
                            <div class="table-responsive">
 					          <form id="frm" name="frm" action="boardUpdate.do?row=${vo.boardNumber }" method="post">
 								<input type="hidden" name="boardWriter" value="${memberId }">
+								<input type="hidden" name="boardValue2" value="${vo.boardValue }">
+								
 								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									 <!-- <tr>
 										<th>작성자</th>
@@ -89,6 +91,7 @@
 										<th>조회수</th>
 										<td><input style="border:none" type="text" name="boardHit" size="50" value="${vo.boardHit }" readonly /></td>
 									</tr>
+									
 								
 					
 									<!-- <tr>

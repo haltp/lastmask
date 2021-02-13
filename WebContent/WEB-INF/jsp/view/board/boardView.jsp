@@ -33,8 +33,22 @@
 	  
 	<!-- script -->
  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-	
+	<script type="text/javascript">
+function deleteBoard(str){
+	var yn = confirm("정말 삭제합니까");
+	if(yn){
+		frm.action="boardDelete.do?row="+str;
+		frm.submit();
+	}
+}
+function updateBoard(str){
+	frm.action = "boardUpdateForm.do?row="+str;
+	frm.submit();
+}
 
+
+
+</script>
 
 </head>
 
@@ -60,6 +74,7 @@
                            <div class="table-responsive">
 					          <form id="frm" name="frm" action="boardUpdateForm2.do?row=${vo.boardNumber }" method="post">
 								<input type="hidden" name="boardWriter" value="${memberId }">
+								<input type="hidden" name="boardValue2" value="${vo.boardValue }">
 								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									 <!-- <tr>
 										<th>작성자</th>
@@ -97,16 +112,31 @@
 									</tr> -->
 					
 									<tr align="center" valign="middle">
-										<c:if test="${memberId == vo.boardWriter }">
-										<td colspan="5"><input type="submit" value="수정화면"> 
-										</c:if>
-										<!-- <input type="reset" value="작성취소"> --> 
+										
 										<c:if test="${vo.boardValue eq 'notice' }">
+										<td colspan="5">
+										<c:if test="${memberId == vo.boardWriter }">
+										<input type="submit" value="수정화면">
+										</c:if>
 										 <input type="button" onclick="location.href = 'showBoardTest.do'" value="목록">
+										 </td>
 										</c:if>
 										<c:if test="${vo.boardValue eq 'questions' }">
-										 <input type="button" onclick="location.href = 'showBoardTest2.do'" value="목록">
+										<td colspan="5">
+										<c:if test="${memberId == vo.boardWriter }">
+										<input type="submit" value="수정화면">
+										<button type="button" onclick="deleteBoard('${vo.boardNumber}')">삭제</button>
 										</c:if>
+										 <input type="button" onclick="location.href = 'showBoardTest2.do'" value="목록">
+										 </td>
+										</c:if>
+										
+										
+										
+										 
+										
+										<!-- <input type="reset" value="작성취소"> --> 
+										
 										
 										</td>
 									</tr>

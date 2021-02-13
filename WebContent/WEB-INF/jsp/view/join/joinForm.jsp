@@ -79,14 +79,12 @@
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                        <form id="frm" name="frm" onsubmit="return formCheck()"
-                        action="join.do" method="post" novalidate="novalidate">
+                        <form id="frm" name="frm" onsubmit="return formCheck()" action="join.do" method="post" novalidate="novalidate">
                         	<div class="control-group">
                         	<div class="form-row">
                                 <div class="form-group floating-label-form-group controls col-md-10 mb-0">
                                     <label>Id</label>
-                                    <input class="form-control" id="memberId" name="memberId" type="text" 
-                                    placeholder="Id" required="required" data-validation-required-message="Please enter your Id." />
+                                    <input class="form-control" id="memberId" name="memberId" type="text" placeholder="Id"  data-validation-required-message="Please enter your Id." required />
                                     <p class="help-block text-danger"></p>
                                     </div>
                                 <div class="form-group col-md-2">

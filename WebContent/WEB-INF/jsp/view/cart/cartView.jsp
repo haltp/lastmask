@@ -29,15 +29,15 @@
 	<!-- script -->
  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		function buyProduct(str) {
-			frm.productNum.value = str;
-			frm.action = "bootPay.do";
-			frm.submit();
+		function buyProduct(str,str1) {
+			
+			location.href = "bootPay.do?cartNumber="+str+"&productNum="+str1;
+			
 		}
-		function DeleteProduct(str) {
-			frm.productNum.value = str;
-			frm.action = "cartDelete.do";
-			frm.submit();
+		function DeleteProduct(str,str1,str2) {
+			
+			location.href = "cartDelete.do?cartNumber="+str+"&cartSelect="+str1+"&productNum="+str2;
+			
 		}
 	</script>
 
@@ -88,9 +88,9 @@
 								<td>${vo.productPrice }</td>
 								<td>${vo.cartSelect }</td>
 								<td>${vo.productSeller }</td>
-								<td><button type="button" onclick="buyProduct(${vo.cartProduct})">구 매</button></td>
+								<td><button type="button" onclick="buyProduct(${vo.cartNumber},${vo.cartProduct })">구 매</button></td>
 								<td>
-									<button type="button" onclick="DeleteProduct(${vo.cartNumber})">삭 제</button>
+									<button type="button" onclick="DeleteProduct(${vo.cartNumber},${vo.cartSelect },${vo.cartProduct } )">삭 제</button>
 									<input type="hidden" name="cartUser" id="cartUser" value=${vo.cartUser }>
 								</td>
 							</tr>

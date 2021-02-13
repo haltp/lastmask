@@ -39,17 +39,40 @@ public class CartDao extends DAO {
 	}
 
 	public CartVo select(CartVo vo) { // 장바구니 결제시 한개의 리스트 조회
-		String sql = "SELECT * FROM CART C, PRODUCT P WHERE C.CARTUSER = ? AND P.PRODUCTNUM = C.CARTPRODUCT AND CARTPRODUCT = ?";
+		String sql = "select * from cart c, product p where c.cartuser= ? and c.CARTNUMBER=? and P.PRODUCTNUM = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getCartUser());
-			psmt.setInt(2, vo.getCartProduct());
+			psmt.setInt(2, vo.getCartNumber());
+			psmt.setInt(3, vo.getProductNum());
+			
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				vo.setCartNumber(rs.getInt("cartnumber"));
 				vo.setCartUser(rs.getString("cartuser"));
 				vo.setCartProduct(rs.getInt("cartproduct"));
 				vo.setCartSelect(rs.getInt("cartselect"));
+				vo.setProductNum(rs.getInt("productNum"));
+				vo.setProductName(rs.getString("productName"));
+				vo.setProductQunt(rs.getInt("productQunt"));
+				vo.setProductPrice(rs.getInt("productPrice"));
+				vo.setProductSeller(rs.getString("productSeller"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return vo;
+	}
+	
+	public CartVo selectImm(CartVo vo) { // 장바구니 결제시 한개의 리스트 조회
+		String sql = "select * from product where productnum=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getProductNum());
+			rs = psmt.executeQuery();
+			if (rs.next()) {
 				vo.setProductNum(rs.getInt("productNum"));
 				vo.setProductName(rs.getString("productName"));
 				vo.setProductQunt(rs.getInt("productQunt"));

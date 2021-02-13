@@ -16,7 +16,7 @@ public class BoardUpdateForm implements Command {
 		//게시글 수정 폼 호출
 		vo.setBoardNumber(Integer.parseInt(request.getParameter("row")));
 		
-		 dao.select(vo);
+		dao.select(vo);
 		request.setAttribute("vo", vo);
 		
 		return "view/board/boardUpdateForm";

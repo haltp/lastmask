@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import co.mask.cart.dao.CartDao;
 import co.mask.cart.vo.CartVo;
 import co.mask.common.Command;
+import co.mask.product.dao.ProductDao;
+import co.mask.product.vo.ProductVo;
 
 public class InputCart implements Command {
 
@@ -15,24 +17,50 @@ public class InputCart implements Command {
 		// InputCart.do 처리 메소드
 		CartDao dao = new CartDao();
 		CartVo vo = new CartVo();
+		
+		//재고 수량 감소
+		ProductDao pDao = new ProductDao();
+		ProductVo pVo = new ProductVo();
+		
+		
 		HttpSession session = request.getSession();
+		/*
+		 * System.out.println((String) session.getAttribute("memberId"));
+		 * System.out.println(request.getParameter("amount"));
+		 * System.out.println(Integer.parseInt(request.getParameter("productNum")));
+		 */
 		
-		System.out.println((String) session.getAttribute("memberId"));
-		System.out.println(Integer.parseInt(request.getParameter("productNum")));
+		String viewPage = "";
 		
-		System.out.println(Integer.parseInt(request.getParameter("amount")));
+		if((String) session.getAttribute("memberId") == null) {
+			viewPage = "loginForm.do";
+		}
 		
-		vo.setCartUser((String) session.getAttribute("memberId"));
-		vo.setCartProduct(Integer.parseInt(request.getParameter("productNum")));
-		vo.setCartSelect(Integer.parseInt(request.getParameter("amount")));
+		else {
+			//input cart
+			vo.setCartUser((String) session.getAttribute("memberId"));
+			vo.setCartSelect(Integer.parseInt(request.getParameter("amount")));
+			vo.setCartProduct(Integer.parseInt(request.getParameter("productNum")));
+			
+		
+			dao.insert(vo);
+			request.setAttribute("vo", vo);
+			
+			//재고 수량 감소
+			pVo.setAmount(Integer.parseInt(request.getParameter("amount")));
+			pVo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
+			pDao.amountMinus(pVo);
+			request.setAttribute("pVo", pVo);
+			
+			viewPage = "cartView.do";
+			
+		}
 		
 		
-		int n=dao.insert(vo);
-		request.setAttribute("vo", vo);
-		
+	
 		
 		//return "view/product/showListForm";
-		return "cartView.do";
+		return viewPage;
 	}
 
 }

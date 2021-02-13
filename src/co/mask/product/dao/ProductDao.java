@@ -166,6 +166,47 @@ public class ProductDao extends DAO{
 		
 	}
 	
+	//재고 수량 감소
+	public int amountMinus(ProductVo vo) {
+		//UPDATE BOOK SET BCOUNT=BCOUNT-1 WHERE BOOKCODE=?
+		int n = 0;
+		String sql = "UPDATE PRODUCT SET PRODUCTQUNT=PRODUCTQUNT-? WHERE PRODUCTNUM=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getAmount());
+			psmt.setInt(2, vo.getProductNum());
+			
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return n;
+	} 
+	
+	//재고 수량 증가
+	public int amountPlus (ProductVo vo) {
+		//UPDATE BOOK SET BCOUNT=BCOUNT-1 WHERE BOOKCODE=?
+		int n = 0;
+		String sql = "UPDATE PRODUCT SET PRODUCTQUNT=PRODUCTQUNT+? WHERE PRODUCTNUM=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getAmount());
+			psmt.setInt(2, vo.getProductNum());
+			
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return n;
+	} 
+	
+	
 	public void close() { //close 메소드
 		try {
 			if(rs != null) rs.close();

@@ -32,6 +32,7 @@ import co.mask.board.web.BoardWriteForm;
 import co.mask.board.web.Hedaer;
 import co.mask.board.web.Notice;
 import co.mask.cart.web.BootPay;
+import co.mask.cart.web.BootPayImm;
 import co.mask.cart.web.CartDelete;
 import co.mask.cart.web.CartView;
 import co.mask.cart.web.InputCart;
@@ -113,6 +114,7 @@ public class FrontController5 extends HttpServlet {
 				//Cart
 				map.put("/cartView.do", new CartView()); // 장바구니 리스트 페이지
 				map.put("/bootPay.do", new BootPay()); // bootPay 결제
+				map.put("/bootPayImm.do", new BootPayImm()); // bootPay 결제
 				map.put("/cartDelete.do", new CartDelete()); // 장바구니 삭제
 				map.put("/nonMemberBootPay.do", new NonMemberBootPay()); // 비회원 결제
 				map.put("/nonMemberCart.do", new NonMemberCart()); // 비회원 장바구니
