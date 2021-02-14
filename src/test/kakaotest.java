@@ -1,16 +1,16 @@
-package co.mask.admin.web;
+package test;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.mask.common.Command;
 
-public class AdminFrom implements Command {
+public class kakaotest implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		//관리자의 관리창 호출
-		return "view/admin/adminBoard";
+		// TODO Auto-generated method stub
+		return "view/login/kakaoLogin";
 	}
 
 }

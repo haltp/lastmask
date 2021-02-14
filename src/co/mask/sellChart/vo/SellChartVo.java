@@ -5,6 +5,8 @@ public class SellChartVo {
 	private int chartProductNum;
 	private int chartProductQunt;
 	private String chartSeller;
+	
+	
 
 	public String getChartSeller() {
 		return chartSeller;

@@ -18,7 +18,187 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    </head>
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+ 
+
+
+ $(function () {
+
+   $.ajax({
+     url: '/MaskTest/getBestProduct',
+     type: 'get',
+     dataType: 'json',
+     success: showContents,
+     error: showErrors
+   });
+
+ })
+
+ function showErrors(result) {
+   console.log(result)
+  
+ }
+
+ function showContents(result) { // [{},{},{}]
+
+   //console.log(result)
+
+   let list = result;
+   for (val of list) {
+     //console.log(val.productNum, val.productName, val.productPrice);
+     //console.log(val);
+     
+     
+     
+     let elem_3;
+     
+    elem_3 = $('<div />').addClass("col-md-6 somin mb-5");
+    let elem_4 = $('<div />').addClass("portfolio-item mx-auto").attr('data-toggle','modal').attr('data-target','#portfolioModal'+val.productNum);
+    let e4_e1 = $('<div />').addClass("portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100");
+    let e4_e1_e1 = $('<div />').addClass("portfolio-item-caption-content text-center text-white");
+    let e4_e1_e1_i = $('<i />').addClass("fas fa-plus fa-3x");
+    let e4_img = $('<img />').addClass("img-fluid").attr('src','images/'+val.image);
+    
+    e4_e1_e1.append(e4_e1_e1_i);
+    e4_e1.append(e4_e1_e1);
+    elem_4.append(e4_e1);
+    elem_4.append(e4_img);
+    elem_3.append(elem_4);
+    
+    
+    
+    $('.portContainer').append(elem_3);
+    
+    //modal
+    
+    let div4, div5,div6;
+    
+    div4 = $('<div />').addClass("portfolio-modal modal fade").attr('id','portfolioModal'+val.productNum).attr('tabindex','-1').attr('role','dialog').attr('aria-labelledby','portfolioModal'+val.productNum+'Label').attr('aria-hidden','true');
+    div5 = $('<div />').addClass("modal-dialog modal-xl").attr('role','document');
+    div6 = $('<div />').addClass("modal-content");
+    
+    
+    let div6_e1 = $('<button />').addClass("close").attr('type','button').attr('data-dismiss', 'modal').attr('aria-label','Close');
+    let div6_e1_e1 = $('<span />').attr('aria-hidden', 'ture');
+    let div6_e1_e1_e1=$('<i />').addClass("fas fa-times");
+   
+    
+
+    
+    let div6_e2 = $('<div />').addClass("modal-body text-center");
+    let div6_e2_e1=$('<div />').addClass("container");
+    let div6_e2_e1_e1=$('<div />').addClass("row justify-content-center");
+    
+    let div6_e2_e1_e1_frm=$('<form />').attr('name','frm1').attr('method','post');
+    let div6_e2_e1_e1_e1=$('<div />').addClass("col-lg-8");
+    let div6_e2_e1_e1_e1_h=$('<h2 />').addClass("portfolio-modal-title text-secondary text-uppercase mb-0").attr('id','portfolioModal'+val.productNum+'Label');
+    
+    $(div6_e2_e1_e1_e1_h).html(val.productName);
+    
+    let div6_e2_e1_e1_e1_h_input = $('<input />').attr('type','text').attr('name','modalName').attr('id','modalName').attr('value', val.productName);
+    let div6_e2_e1_e1_e1_e1=$('<div />').addClass("divider-custom");
+    let div6_e2_e1_e1_e1_e1_e1=$('<div />').addClass("divider-custom-line");
+    let div6_e2_e1_e1_e1_e1_e2=$('<div />').addClass("divider-custom-icon");
+    let div6_e2_e1_e1_e1_e1_e2_i=$('<i />').addClass("fas fa-star");
+    let div6_e2_e1_e1_e1_e1_e3=$('<div />').addClass("divider-custom-line");
+    
+    
+    let div6_e2_e1_e1_e1_img=$('<img />').addClass("img-fluid rounded mb-5").attr('src','images/'+val.image);
+    let div6_e2_e1_e1_e1_p=$('<p />').addClass("mb-5").html("가격 :"+val.productPrice);
+    let div6_e2_e1_e1_e1_p2=$('<p />').addClass("mb-5").html("재고 :"+val.productQunt);
+    let div6_e2_e1_e1_e1_p3=$('<p />').addClass("mb-5").html("구매수량:")
+    let div6_e2_e1_e1_e1_p3_input=$('<input />').attr('type','text').attr('name','amount'+val.productNum).attr('id','amount'+val.productNum).attr('required','required');
+    
+    
+    
+    
+    let div6_e2_e1_e1_e1_button=$('<button />').addClass("btn btn-primary").html("구매하기").attr('onclick','buyNow('+val.productNum+','+val.productPrice+'); return false;'); 
+    let div6_e2_e1_e1_e1_button2=$('<button />').addClass("btn btn-primary").html('장바구니').attr('onclick','gotoCart('+val.productNum+'); return false;');
+    let div6_e2_e1_e1_e1_button_i=$('<i />').addClass("fas fa-times fa-fw");
+    
+   
+    
+    
+    $(div6_e2_e1_e1_e1_e1).append(div6_e2_e1_e1_e1_e1_e1);
+    div6_e2_e1_e1_e1_e1_e2.append(div6_e2_e1_e1_e1_e1_e2_i);
+    $(div6_e2_e1_e1_e1_e1).append(div6_e2_e1_e1_e1_e1_e2);
+    $(div6_e2_e1_e1_e1_e1).append(div6_e2_e1_e1_e1_e1_e3);
+    
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_h);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_e1);
+  
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_img);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_p);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_p2);
+    
+    $(div6_e2_e1_e1_e1_p3).append(div6_e2_e1_e1_e1_p3_input)
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_p3);
+    
+    
+    
+    
+   
+    
+    div6_e2_e1_e1_e1_button.append(div6_e2_e1_e1_e1_button_i);
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_button);
+
+    $(div6_e2_e1_e1_e1).append(div6_e2_e1_e1_e1_button2);
+   
+    
+
+    $(div6_e2_e1_e1_frm).append(div6_e2_e1_e1_e1);
+    $(div6_e2_e1_e1).append(div6_e2_e1_e1_frm);
+    
+    
+   
+    $(div6_e2_e1).append(div6_e2_e1_e1);
+    $(div6_e2).append(div6_e2_e1);
+    
+    $(div6).append(div6_e2);
+    
+    div6_e1_e1.append(div6_e1_e1_e1);
+    div6_e1.append(div6_e1_e1);
+    $(div6).append(div6_e1);
+    
+    $(div5).append(div6);
+    $(div4).append(div5);
+   
+    $('#page-top').append(div4);
+    
+     
+   }
+
+
+
+
+
+
+ } //end of showContents
+
+
+ function gotoCart(str){
+	var valueById = $('input[name=amount'+str+']').val();
+	 location.href="inputCart.do?amount="+valueById+"&productNum="+str;
+ }
+ 
+  function buyNow(str,str1) {
+	  
+	  var valueById = $('input[name=amount'+str+']').val();
+	  
+		 location.href="bootPayImm.do?amount="+valueById+"&productNum="+str+"&productPrice="+str1;
+			//var win = window.open("", "PopupWin", "width=680,height=800");
+			//frm1.target = "PopupWin";
+			//frm1.amount.value = str1;
+			//location.href="main.do"
+			//frm1.action = "bootPayImm.do?row="+str+"&row1="+str1;
+			//frm1.submit();
+ } 
+
+ 
+ </script>
+   </head>
     
     <body id="page-top">
     
@@ -59,122 +239,29 @@
    </header>
         
         
-	<!--Portfolio Section -->
-	<section class="page-section portfolio" id="portfolio">
-		<div class="container">
-			<!-- Portfolio Section Heading-->
-			<!-- 수정 -->
-			<h2
-				class="page-section-heading text-center text-uppercase text-secondary mb-0">BEST</h2>
-			<!-- Icon Divider-->
-			<div class="divider-custom">
-				<div class="divider-custom-line"></div>
-				<div class="divider-custom-icon">
-					<i class="fas fa-star"></i>
-				</div>
-				<div class="divider-custom-line"></div>
-			</div>
-			<!-- Portfolio Grid Items-->
-			<div class="row justify-content-center">
-				<!-- Portfolio Item 1-->
-				<div class="col-md-6 col-lg-4 mb-5">
-					<div class="portfolio-item mx-auto" data-toggle="modal"
-						data-target="#portfolioModal1">
-						<div
-							class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-							<div
-								class="portfolio-item-caption-content text-center text-white">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div>
-						<img class="img-fluid" src="assets/img/portfolio/maskModel001.JPG"
-							alt="" />
-					</div>
-				</div>
-				<!-- Portfolio Item 2-->
-				<div class="col-md-6 col-lg-4 mb-5">
-					<div class="portfolio-item mx-auto" data-toggle="modal"
-						data-target="#portfolioModal2">
-						<div
-							class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-							<div
-								class="portfolio-item-caption-content text-center text-white">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div>
-						<img class="img-fluid" src="assets/img/portfolio/maskModel002.JPG"
-							alt="" />
-					</div>
-				</div>
-				<!-- Portfolio Item 3-->
-				<div class="col-md-6 col-lg-4 mb-5">
-					<div class="portfolio-item mx-auto" data-toggle="modal"
-						data-target="#portfolioModal3">
-						<div
-							class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-							<div
-								class="portfolio-item-caption-content text-center text-white">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div>
-						<img class="img-fluid" src="assets/img/portfolio/maskModel003.JPG"
-							alt="" />
-					</div>
-				</div>
-				<!-- Portfolio Item 4-->
-				<div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
-					<div class="portfolio-item mx-auto" data-toggle="modal"
-						data-target="#portfolioModal4">
-						<div
-							class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-							<div
-								class="portfolio-item-caption-content text-center text-white">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div>
-						<img class="img-fluid" src="assets/img/portfolio/maskModel004.JPG"
-							alt="" />
-					</div>
-				</div>
-				<!-- Portfolio Item 5-->
-				<div class="col-md-6 col-lg-4 mb-5 mb-md-0">
-					<div class="portfolio-item mx-auto" data-toggle="modal"
-						data-target="#portfolioModal5">
-						<div
-							class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-							<div
-								class="portfolio-item-caption-content text-center text-white">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div>
-						<img class="img-fluid" src="assets/img/portfolio/maskModel005.JPG"
-							alt="" />
-					</div>
-				</div>
-				<!-- Portfolio Item 6-->
-				<div class="col-md-6 col-lg-4">
-					<div class="portfolio-item mx-auto" data-toggle="modal"
-						data-target="#portfolioModal6">
-						<div
-							class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-							<div
-								class="portfolio-item-caption-content text-center text-white">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div>
-						<img class="img-fluid" src="assets/img/portfolio/maskModel006.JPG"
-							alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--Portfolio Section 끝 -->
+ <section class="page-section portfolio" id="portfolio" name="portfolio"><br/><br/><br/>
+ <div class="container">
+ <!-- Portfolio Section Heading--> 
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Best</h2>
+      <!-- Icon Divider-->
+      <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+          <div class="divider-custom-line"></div>
+      </div>
+      <div class="row justify-content-center portContainer">
+      
+      </div>
 	
-	
-	<!-- About Section-->
-	<jsp:include page="about.jsp"></jsp:include>
+	</div>
+ </section>
+ <div class="portrow">
 
+ </div>
+        
+	
+	
+	
 	<!-- Footer-->
 	<jsp:include page="footer.jsp"></jsp:include>
 	
@@ -186,280 +273,7 @@
 	
 	
 	
-	<!-- Portfolio Modals-->
-	<!-- Portfolio Modal 1-->
-	<div class="portfolio-modal modal fade" id="portfolioModal1"
-		tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label"
-		aria-hidden="true">
-		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content">
-				<button class="close" type="button" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true"><i class="fas fa-times"></i></span>
-				</button><!--  -->
-				<div class="modal-body text-center">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-lg-8">
-								<!-- Portfolio Modal - Title-->
-								<h2
-									class="portfolio-modal-title text-secondary text-uppercase mb-0"
-									id="portfolioModal1Label" name="portfolioModal1Label"></h2>
-								<!-- Icon Divider-->
-								<div class="divider-custom">
-									<div class="divider-custom-line"></div>
-									<div class="divider-custom-icon">
-										<i class="fas fa-star"></i>
-									</div>
-									<div class="divider-custom-line"></div>
-								</div>
-								<!-- Portfolio Modal - Image-->
-								<img class="img-fluid rounded mb-5"
-									src="assets/img/portfolio/cabin.png" alt="" />
-								<!-- Portfolio Modal - Text-->
-								<p class="mb-5">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Mollitia neque assumenda ipsam nihil,
-									molestias magnam, recusandae quos quis inventore quisquam velit
-									asperiores, vitae? Reprehenderit soluta, eos quod consequuntur
-									itaque. Nam.</p>
-								<button class="btn btn-primary" data-dismiss="modal">
-									<i class="fas fa-times fa-fw"></i> Close Window
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	
-
-	
-	<!-- Portfolio Modal 2-->
-	<div class="portfolio-modal modal fade" id="portfolioModal2"
-		tabindex="-1" role="dialog" aria-labelledby="portfolioModal2Label"
-		aria-hidden="true">
-		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content">
-				<button class="close" type="button" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true"><i class="fas fa-times"></i></span>
-				</button>
-				<div class="modal-body text-center">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-lg-8">
-								<!-- Portfolio Modal - Title-->
-								<h2
-									class="portfolio-modal-title text-secondary text-uppercase mb-0"
-									id="portfolioModal2Label">Tasty Cake</h2>
-								<!-- Icon Divider-->
-								<div class="divider-custom">
-									<div class="divider-custom-line"></div>
-									<div class="divider-custom-icon">
-										<i class="fas fa-star"></i>
-									</div>
-									<div class="divider-custom-line"></div>
-								</div>
-								<!-- Portfolio Modal - Image-->
-								<img class="img-fluid rounded mb-5"
-									src="assets/img/portfolio/cake.png" alt="" />
-								<!-- Portfolio Modal - Text-->
-								<p class="mb-5">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Mollitia neque assumenda ipsam nihil,
-									molestias magnam, recusandae quos quis inventore quisquam velit
-									asperiores, vitae? Reprehenderit soluta, eos quod consequuntur
-									itaque. Nam.</p>
-								<button class="btn btn-primary" data-dismiss="modal">
-									<i class="fas fa-times fa-fw"></i> Close Window
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Portfolio Modal 3-->
-	<div class="portfolio-modal modal fade" id="portfolioModal3"
-		tabindex="-1" role="dialog" aria-labelledby="portfolioModal3Label"
-		aria-hidden="true">
-		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content">
-				<button class="close" type="button" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true"><i class="fas fa-times"></i></span>
-				</button>
-				<div class="modal-body text-center">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-lg-8">
-								<!-- Portfolio Modal - Title-->
-								<h2
-									class="portfolio-modal-title text-secondary text-uppercase mb-0"
-									id="portfolioModal3Label">Circus Tent</h2>
-								<!-- Icon Divider-->
-								<div class="divider-custom">
-									<div class="divider-custom-line"></div>
-									<div class="divider-custom-icon">
-										<i class="fas fa-star"></i>
-									</div>
-									<div class="divider-custom-line"></div>
-								</div>
-								<!-- Portfolio Modal - Image-->
-								<img class="img-fluid rounded mb-5"
-									src="assets/img/portfolio/circus.png" alt="" />
-								<!-- Portfolio Modal - Text-->
-								<p class="mb-5">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Mollitia neque assumenda ipsam nihil,
-									molestias magnam, recusandae quos quis inventore quisquam velit
-									asperiores, vitae? Reprehenderit soluta, eos quod consequuntur
-									itaque. Nam.</p>
-								<button class="btn btn-primary" data-dismiss="modal">
-									<i class="fas fa-times fa-fw"></i> Close Window
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Portfolio Modal 4-->
-	<div class="portfolio-modal modal fade" id="portfolioModal4"
-		tabindex="-1" role="dialog" aria-labelledby="portfolioModal4Label"
-		aria-hidden="true">
-		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content">
-				<button class="close" type="button" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true"><i class="fas fa-times"></i></span>
-				</button>
-				<div class="modal-body text-center">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-lg-8">
-								<!-- Portfolio Modal - Title-->
-								<h2
-									class="portfolio-modal-title text-secondary text-uppercase mb-0"
-									id="portfolioModal4Label">Controller</h2>
-								<!-- Icon Divider-->
-								<div class="divider-custom">
-									<div class="divider-custom-line"></div>
-									<div class="divider-custom-icon">
-										<i class="fas fa-star"></i>
-									</div>
-									<div class="divider-custom-line"></div>
-								</div>
-								<!-- Portfolio Modal - Image-->
-								<img class="img-fluid rounded mb-5"
-									src="assets/img/portfolio/game.png" alt="" />
-								<!-- Portfolio Modal - Text-->
-								<p class="mb-5">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Mollitia neque assumenda ipsam nihil,
-									molestias magnam, recusandae quos quis inventore quisquam velit
-									asperiores, vitae? Reprehenderit soluta, eos quod consequuntur
-									itaque. Nam.</p>
-								<button class="btn btn-primary" data-dismiss="modal">
-									<i class="fas fa-times fa-fw"></i> Close Window
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Portfolio Modal 5-->
-	<div class="portfolio-modal modal fade" id="portfolioModal5"
-		tabindex="-1" role="dialog" aria-labelledby="portfolioModal5Label"
-		aria-hidden="true">
-		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content">
-				<button class="close" type="button" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true"><i class="fas fa-times"></i></span>
-				</button>
-				<div class="modal-body text-center">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-lg-8">
-								<!-- Portfolio Modal - Title-->
-								<h2
-									class="portfolio-modal-title text-secondary text-uppercase mb-0"
-									id="portfolioModal5Label">Locked Safe</h2>
-								<!-- Icon Divider-->
-								<div class="divider-custom">
-									<div class="divider-custom-line"></div>
-									<div class="divider-custom-icon">
-										<i class="fas fa-star"></i>
-									</div>
-									<div class="divider-custom-line"></div>
-								</div>
-								<!-- Portfolio Modal - Image-->
-								<img class="img-fluid rounded mb-5"
-									src="assets/img/portfolio/safe.png" alt="" />
-								<!-- Portfolio Modal - Text-->
-								<p class="mb-5">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Mollitia neque assumenda ipsam nihil,
-									molestias magnam, recusandae quos quis inventore quisquam velit
-									asperiores, vitae? Reprehenderit soluta, eos quod consequuntur
-									itaque. Nam.</p>
-								<button class="btn btn-primary" data-dismiss="modal">
-									<i class="fas fa-times fa-fw"></i> Close Window
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Portfolio Modal 6-->
-	<div class="portfolio-modal modal fade" id="portfolioModal6"
-		tabindex="-1" role="dialog" aria-labelledby="portfolioModal6Label"
-		aria-hidden="true">
-		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content">
-				<button class="close" type="button" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true"><i class="fas fa-times"></i></span>
-				</button>
-				<div class="modal-body text-center">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-lg-8">
-								<!-- Portfolio Modal - Title-->
-								<h2
-									class="portfolio-modal-title text-secondary text-uppercase mb-0"
-									id="portfolioModal6Label">Submarine</h2>
-								<!-- Icon Divider-->
-								<div class="divider-custom">
-									<div class="divider-custom-line"></div>
-									<div class="divider-custom-icon">
-										<i class="fas fa-star"></i>
-									</div>
-									<div class="divider-custom-line"></div>
-								</div>
-								<!-- Portfolio Modal - Image-->
-								<img class="img-fluid rounded mb-5"
-									src="assets/img/portfolio/submarine.png" alt="" />
-								<!-- Portfolio Modal - Text-->
-								<p class="mb-5">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Mollitia neque assumenda ipsam nihil,
-									molestias magnam, recusandae quos quis inventore quisquam velit
-									asperiores, vitae? Reprehenderit soluta, eos quod consequuntur
-									itaque. Nam.</p>
-								<button class="btn btn-primary" data-dismiss="modal">
-									<i class="fas fa-times fa-fw"></i> Close Window
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

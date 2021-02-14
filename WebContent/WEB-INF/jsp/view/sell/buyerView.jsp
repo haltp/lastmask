@@ -38,7 +38,16 @@
 <div id="layoutSidenav">
 <div id="layoutSidenav_content">
 <div class="container-fluid">
-<main><br /><br /><br />  
+<div style="width:1280px; margin:0 auto;">
+<br /><br /><br /> <br /><br /><br />
+<div class="cateTit_v2 join">
+<div class="cateTit_v2 title">
+	<em class="title"><h1>구매내역</h1></em>
+</div>
+
+
+</div>
+<main>
 
 	<div class="table-responsive">
 			<form action="" id="frm" name="frm" method="post">
@@ -79,7 +88,13 @@
 			</form>
 		</div>
 	</div>
+	</main>
+	
 	<br /><br /><br /><br />
+	</div>
+	</div>
+	</div>
+	
 	
 	<!-- Footer-->
   		<jsp:include page="../main/footer.jsp"></jsp:include>

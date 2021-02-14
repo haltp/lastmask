@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
- 	<meta charset="utf-8" />
+ 	 <meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" /> 
  	
-	<title>상품관리</title>
+	<title>공지사항 관리</title>
 	
 	<!-- link -->
   	<link href="dist/css/styles.css" rel="stylesheet" /> 
@@ -18,38 +18,30 @@
 	  
 	<!-- script -->
  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
- 	 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
-	 <script type="text/javascript">
-	  google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+	<script type="text/javascript"> 
+ 		function updateUser(str){
+			frm.action = "boardUpdateForm.do?row="+str;
+			frm.submit();
+		}
+		function deleteUser(str,str1){
+			var yn = confirm("정말 삭제하시겠습니까?");
+			if (yn) {
+				frm.action = "boardDelete.do?row="+str+"&row2="+str1;
+				frm.submit();
+			}
+		}
+	</script>  
+	
 
-      function drawChart() {
-		
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Sell List'],
-        <c:forEach var="ct" items="${chartList }">
-       		['${ct.chartProduct}', ${ct.chartProductQunt}],
-        </c:forEach>
-        ]);
 
-        var options = {
-          title: '판매 순위'
-        };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-	 
-		 
-	</script>
 </head>
 
 <body class="sb-nav-fixed">
  
  <jsp:include page="../product/productMenu.jsp"></jsp:include> 
  <div id="layoutSidenav">
- <jsp:include page="../product/productMenuLeft.jsp"></jsp:include> 
+<jsp:include page="../product/productMenuLeft.jsp"></jsp:include> 
             
             <!-- 내용 -->
             <div id="layoutSidenav_content">
@@ -58,42 +50,39 @@
             	             		<div class="card mb-4">
                        <div class="card-header">
 	                      <i class="fas fa-table mr-1"></i>
-                                판매내역
+                                문의사항 목록
                         </div>
                         <!-- card body -->
 						<div class="card-body">
                            <div class="table-responsive">
-                              <form id="frm1" name="frm1" method="post">
+                              <form id="frm" name="frm" method="post">
+                              
                                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr align="center" style="background-color: silver">
-											<th width="70" >판매번호</th>
-										    <th width="100">상품번호</th> 
-										    <th width="70">상 품 명</th>
-										    <th width="70">상품 가격</th>
-										    <th width="70">판 매 자</th>
-										    <th width="70">구 매 자</th>
-										    <th width="70">구 매 일</th>
+											<th width="50">게시글 번호</th>
+											<!-- <th width="100">글쓴이</th> -->
+											<th width="300">제목</th>
+											<!-- <th width="70">내용</th> -->
+											<th width="100">날짜</th>
+											<th width="70">수정</th>
+											<th width="70">삭제</th>
 										</tr>
 									 </thead>
 				 					 <tbody>
-				 					 	<c:if test="${empty list}"> 
-											<tr><td colspan="7" align="center">구매 내역이 없습니다.</td></tr>
-										</c:if>
-										<c:if test="${not empty list}">
-										 <c:forEach var="vo" items="${list }">
+										<c:forEach var="vo" items="${list }">
+										<input type="hidden" name="boardValue2" value="${vo.boardValue}">
+										<%-- <input type="hidden" name="boardValue" value="${vo.boardValue }"> --%>
 											<tr align="center">
-												<td width="70">${vo.sellNumber }</td>
-											    <td width="70">${vo.sellProductNumber}</td>
-											    <td width="70">${vo.productName}</td>
-											    <td width="70">${vo.productPrice}</td>
-											    <td width="70">${vo.productSeller}</td>
-											    <td width="70">${vo.sellUser}</td>
-											    <td width="70">${vo.sellDate}</td>
-											    
+												<td width="70">${vo.boardNumber}</td>
+												<%-- <td width="70">${vo.boardWriter}</td> --%>
+												<td width="70">${vo.boardTitle}</td>
+												<%-- <td width="70">${vo.boardContent}</td> --%>
+												<td width="70">${vo.boardDate}</td>
+											    <td ><button type="button" onclick="updateUser('${vo.boardNumber}')">수정</button></td>
+												<td ><button type="submit" onclick="deleteUser(${vo.boardNumber}, '${vo.boardValue}')">삭제</button></td> 
 											</tr>
-										 </c:forEach>
-										</c:if>
+										</c:forEach>
 									</tbody>
 								</table>
 							</form><br/>
@@ -106,14 +95,39 @@
              		<div class="card mb-4">
                        <div class="card-header">
 	                      <i class="fas fa-table mr-1"></i>
-                                판매내역 그래프
+                                공지사항 등록
                         </div>
                         <!-- card body -->
 						<div class="card-body">
                            <div class="table-responsive">
-					          <form action="" id="frm" name="frm" method="post">
-								<div id="piechart" style="width: 900px; height: 500px;"></div>
-								 
+					          <form name="boardForm" method="post" action="boardWirte.do">
+								<input type="hidden" name="boardWriter" value="${memberId }">
+								<input type="hidden" name="boardValue" value="notice">
+								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<!-- <tr>
+										<th>작성자</th>
+										<td><input type="text" name="name"></td>
+									</tr> -->
+									<tr align="center">
+										<th>제목</th>
+										<td><input style="border:none" type="text" name="boardTitle" size="150" /></td>
+									</tr>
+									<tr align="center">
+										<td id="title">내용</td>
+										<td><textarea style="border:none" name="boardContent" rows="10" cols="150" ></textarea></td>
+									</tr>
+									<!-- <tr>
+										<td id="title">파일첨부</td>
+										<td><input type="file" name="boardFile" /></td>
+									</tr> -->
+					
+									<tr align="center" valign="middle">
+										<td colspan="5"><input type="submit" value="등록"> 
+										<input type="reset" value="작성취소"> 
+										<!-- <input type="button" onclick="location.href = 'boardListForm.do'" value="목록"> -->
+										</td>
+									</tr>
+								</table>
 							</form>
 						 </div>
 						</div>

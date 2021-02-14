@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,20 +33,23 @@
 	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 	  
 	<!-- script -->
+	
  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-function deleteBoard(str){
-	var yn = confirm("정말 삭제합니까");
-	if(yn){
-		frm.action="boardDelete.do?row="+str;
-		frm.submit();
-	}
-}
-function updateBoard(str){
-	frm.action = "boardUpdateForm.do?row="+str;
-	frm.submit();
-}
 
+
+
+	 function deleteBoard(str){
+			var yn = confirm("정말 삭제합니까");
+			if(yn){
+				frm.action="boardDelete.do?row="+str;
+				frm.submit();
+			}
+		}
+		function updateBoard(str){
+			frm.action = "boardUpdateForm.do?row="+str;
+			frm.submit();
+		}
 
 
 </script>
@@ -63,14 +67,16 @@ function updateBoard(str){
                <main><br /><br /><br />              
             	<div class="container-fluid">
 
-					
+					<!-- 
              		<div class="card mb-4">
                        <div class="card-header">
 	                      <i class="fas fa-table mr-1"></i>
                                 글 상세보기
-                        </div>
+                        </div> -->
                         <!-- card body -->
-						<div class="card-body">
+						<!-- <div class="card-body"> -->
+						
+						<br /><br /><br />
                            <div class="table-responsive">
 					          <form id="frm" name="frm" action="boardUpdateForm2.do?row=${vo.boardNumber }" method="post">
 								<input type="hidden" name="boardWriter" value="${memberId }">
@@ -104,6 +110,8 @@ function updateBoard(str){
 										<th>조회수</th>
 										<td><input style="border:none" type="text" name="boardHit" size="50" value="${vo.boardHit }" /></td>
 									</tr>
+								
+									
 								
 					
 									<!-- <tr>
@@ -143,7 +151,7 @@ function updateBoard(str){
 								</table>
 							</form>
 						 </div>
-						</div>
+						<!-- </div> -->
 						<!-- card body 끝 -->
 					</div>
 					<!-- 공지등록 card 끝 -->
@@ -175,7 +183,7 @@ function updateBoard(str){
         <script src="js/scripts.js"></script>
 	
 	<!-- script -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="dist/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

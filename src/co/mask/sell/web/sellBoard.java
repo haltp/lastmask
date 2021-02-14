@@ -1,34 +1,35 @@
-package co.mask.board.web;
+package co.mask.sell.web;
 
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import co.mask.board.dao.BoardDao;
 import co.mask.board.vo.BoardVo;
 import co.mask.common.Command;
-import co.mask.member.dao.MemberDao;
-import co.mask.product.dao.ProductDao;
-import co.mask.product.vo.ProductVo;
 
-public class BoardView implements Command {
+public class sellBoard implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		BoardDao dao = new BoardDao();
 		BoardVo vo = new BoardVo();
-		vo.setBoardNumber(Integer.parseInt(request.getParameter("row")));
+		ArrayList<BoardVo> list = new ArrayList<BoardVo>();
+		HttpSession session = request.getSession();
+		
+		vo.setProductseller((String) session.getAttribute("memberId"));
+		
+		list = dao.selectListSell(vo);
+		request.setAttribute("list", list);
 		
 		
-		dao.select(vo);
 		
+		//if (memId == )
 		
-		request.setAttribute("vo", vo);
-		
-		
-	
-		return "view/board/boardView";
+		return "view/admin/adminBoard";
 	}
 
 }

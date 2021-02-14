@@ -24,22 +24,28 @@
 		}).error(function(data) {
 			//결제 진행시 에러가 발생하면 수행됩니다.
 			console.log(data);
+			location.href="main.do";
 		}).cancel(function(data) {
 			//결제가 취소되면 수행됩니다.
 			console.log(data);
+			location.href="main.do";
 		}).close(function(data) {
 			// 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
+			frm.submit();
 			console.log(data);
+			//location.href="main.do";
+			//location.href="sellInsert.do?productNum="+${vo.productNum}+"&sellQunt="+${vo.cartSelect};
 		}).done(function(data) {
 			//결제가 정상적으로 완료되면 수행됩니다
 			frm.submit();
 			alert('결제가 정상적으로 완료되었습니다.');
 			console.log(data);
+			//location.href="sellInsert.do?productNum="+${vo.productNum}+"&sellQunt="+${vo.cartSelect};
 		});
 	</script>
 	<form action="sellInsert.do" name="frm" id="frm">
 		<input type="hidden" name="productNum" id="productNum" value="${vo.productNum}">
-		<input type="hidden" name="cartSelect" id="cartSelect" value="${vo.cartSelect}">
+		<input type="hidden" name="sellQunt" id="sellQunt" value="${vo.cartSelect}">
 		
 	</form>
 </body>

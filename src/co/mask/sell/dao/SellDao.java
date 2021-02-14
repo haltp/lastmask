@@ -14,8 +14,7 @@ public class SellDao extends DAO {
 
 	public ArrayList<SellVo> selectList(SellVo vo) { // 판매완료 상품 목록 리스트 ( 구매자 )
 		ArrayList<SellVo> list = new ArrayList<SellVo>();
-		String sql = "SELECT * FROM SELL S, PRODUCT P, MEMBER M WHERE S.SELLUSER = M.MEMBERID AND S.SELLUSER = ?"
-				+ " AND P.PRODUCTNUM = S.SELLPRODUCTNUMBER";
+		String sql = "SELECT * FROM SELL S, PRODUCT P, MEMBER M WHERE S.SELLUSER = M.MEMBERID AND S.SELLUSER = ? AND P.PRODUCTNUM = S.SELLPRODUCTNUMBER order by sellnumber desc";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getSellUser());
@@ -42,8 +41,7 @@ public class SellDao extends DAO {
 
 	public ArrayList<SellVo> selectListSeller(SellVo vo) { // 판매완료 상품 목록 리스트 ( 판매자 )
 		ArrayList<SellVo> list = new ArrayList<SellVo>();
-		String sql = "SELECT * FROM SELL S, PRODUCT P, MEMBER M WHERE S.SELLUSER = M.MEMBERID "
-				+ "AND P.PRODUCTSELLER = ? AND P.PRODUCTNUM = S.SELLPRODUCTNUMBER";
+		String sql = "SELECT * FROM SELL S, PRODUCT P, MEMBER M WHERE S.SELLUSER = M.MEMBERID AND P.PRODUCTSELLER = ? AND P.PRODUCTNUM = S.SELLPRODUCTNUMBER";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getProductSeller());
@@ -70,7 +68,7 @@ public class SellDao extends DAO {
 	
 	public int insert(SellVo vo) { // 구매한 상품 정보 입력
 		int n = 0;
-		String sql = "INSERT INTO SELL VALUES(SEQSELL.NEXTVAL, ?, SYSDATE, ?, ?);";
+		String sql = "INSERT INTO SELL VALUES(SEQSELL.NEXTVAL, ?, SYSDATE, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, vo.getSellProductNumber());

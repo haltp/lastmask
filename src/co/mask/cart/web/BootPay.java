@@ -16,7 +16,7 @@ public class BootPay implements Command {
 		CartVo vo = new CartVo();
 		
 		HttpSession session = request.getSession();
-		//vo.setCartProduct(Integer.parseInt(request.getParameter("row")));
+		vo.setCartProduct(Integer.parseInt(request.getParameter("productNum")));
 		
 		vo.setCartUser((String) session.getAttribute("memberId"));
 		vo.setCartNumber(Integer.parseInt(request.getParameter("cartNumber")));

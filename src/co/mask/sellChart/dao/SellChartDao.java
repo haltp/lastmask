@@ -34,6 +34,9 @@ public class SellChartDao extends DAO {
 		}
 		return list;
 	}
+	
+
+
 
 	public SellChartVo select(SellChartVo vo) { // 차트 한개 조회
 		String sql = "SELECT * FROM SELLCHART WHERE CHARTPRODUCTNUM = ? AND CHARTSELLER = ?";
@@ -56,7 +59,7 @@ public class SellChartDao extends DAO {
 
 	public int insert(SellChartVo vo) { // 차트 입력
 		int n = 0;
-		String sql = "INSERT INTO SELLCHART SET(?, ?, ?, ?)";
+		String sql = "INSERT INTO SELLCHART VALUES(?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getChartProduct());

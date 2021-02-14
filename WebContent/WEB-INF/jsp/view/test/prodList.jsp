@@ -53,12 +53,12 @@
      //console.log(val);
      
      
-     let div3;
+     
      let elem_3;
      
-     div3 = $('<div />').addClass("row justify-content-center");
-    elem_3 = $('<div />').addClass("col-md-6 col-lg-4 mb-5");
-    let elem_4 = $('<div />').addClass("portfolio-item mx-auto").attr('data-toggle','modal').attr('data-target','#portfolioModal'+val.productNum);
+    
+    elem_3 = $('<div />').addClass("col-md-6 somin mb-5");
+    let elem_4 = $('<div />').addClass("portfolio-item mx-auto").attr('data-toggle','modal').attr('data-target','#portfolioModal'+val.productNum).attr('style','height:100%; width:100%;');
     let e4_e1 = $('<div />').addClass("portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100");
     let e4_e1_e1 = $('<div />').addClass("portfolio-item-caption-content text-center text-white");
     let e4_e1_e1_i = $('<i />').addClass("fas fa-plus fa-3x");
@@ -71,9 +71,9 @@
     elem_3.append(elem_4);
     
     
-    $(div3).append(elem_3);
     
-    $('.portContainer').append(div3);
+    
+    $('.portContainer').append(elem_3);
     
     //modal
     
@@ -113,7 +113,7 @@
     let div6_e2_e1_e1_e1_p=$('<p />').addClass("mb-5").html("가격 :"+val.productPrice);
     let div6_e2_e1_e1_e1_p2=$('<p />').addClass("mb-5").html("재고 :"+val.productQunt);
     let div6_e2_e1_e1_e1_p3=$('<p />').addClass("mb-5").html("구매수량:")
-    let div6_e2_e1_e1_e1_p3_input=$('<input />').attr('type','text').attr('name','amount'+val.productNum).attr('id','amount'+val.productNum);
+    let div6_e2_e1_e1_e1_p3_input=$('<input />').attr('type','text').attr('name','amount'+val.productNum).attr('id','amount'+val.productNum).attr('required','required');
     
     
     
@@ -209,7 +209,7 @@
 <jsp:include page="../main/menu.jsp"></jsp:include>  
     
 <section class="page-section portfolio" id="portfolio" name="portfolio"><br/><br/><br/>
- <div class="container portContainer">
+ <div class="container ">
  <!-- Portfolio Section Heading--> 
       <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Purchase</h2>
       <!-- Icon Divider-->
@@ -217,6 +217,9 @@
           <div class="divider-custom-line"></div>
           <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
           <div class="divider-custom-line"></div>
+      </div>
+      <div class="row justify-content-center portContainer">
+      
       </div>
 	
 	</div>

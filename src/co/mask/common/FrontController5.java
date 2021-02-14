@@ -48,6 +48,7 @@ import co.mask.main.MainPage;
 import co.mask.main.Menu;
 import co.mask.member.web.MyPageDelete;
 import co.mask.member.web.MyPageForm;
+import co.mask.member.web.MyPageFormSeller;
 import co.mask.member.web.MyPageUpdate;
 import co.mask.member.web.MyPageUpdateForm;
 import co.mask.product.web.DeleteAdminExec;
@@ -65,6 +66,7 @@ import co.mask.sell.web.SellInsert;
 import co.mask.sell.web.SellView;
 import co.mask.sell.web.SellerForm;
 import co.mask.sell.web.SellerView;
+import co.mask.sell.web.sellBoard;
 import co.mask.sellChart.web.ChartInsert;
 import co.mask.sellChart.web.ChartList;
 import test.AdminMain;
@@ -72,6 +74,7 @@ import test.AdminUserFormTest;
 import test.ShowBoardTest;
 import test.ShowBoardTest2;
 import test.ShowProductTest;
+import test.kakaotest;
 
  
 @WebServlet("/FrontController5")
@@ -103,14 +106,14 @@ public class FrontController5 extends HttpServlet {
 		map.put("/sellerUpdate.do", new SellerUpdate()); // 관리자의 거래처 수정
 		map.put("/sellerDelete.do", new SellerDelete()); // 관리자의 거래처 삭제
 		map.put("/myPageForm.do", new MyPageForm()); // 멤버(회원,거래처)의 내정보 조회
+		map.put("/myPageFormSeller.do", new MyPageFormSeller()); // 판매자(회원,거래처)의 내정보 조회
 		map.put("/myPageUpdateForm.do", new MyPageUpdateForm());// 멤버의 내정보 수정 폼 호출
 		map.put("/myPageUpdate.do", new MyPageUpdate());// 멤버의 내정보 수정
 		map.put("/myPageDelete.do", new MyPageDelete());// 멤버의 회원탈퇴
 		map.put("/logout.do", new Logout());//로그아웃
 		
 		//FrontController2
-	
-	
+
 				//Cart
 				map.put("/cartView.do", new CartView()); // 장바구니 리스트 페이지
 				map.put("/bootPay.do", new BootPay()); // bootPay 결제
@@ -169,6 +172,9 @@ public class FrontController5 extends HttpServlet {
 			
 			
 			map.put("/adminBoard.do", new AdminBoard()); //관리자 공지사항
+			map.put("/kakaotest.do", new kakaotest()); //관리자 공지사항
+			
+			map.put("/sellBoard.do", new sellBoard()); //판매자 문의사항
 			
 		
 	}

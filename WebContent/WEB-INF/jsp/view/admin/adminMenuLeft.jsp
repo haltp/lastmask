@@ -15,7 +15,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">     
                             <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link" href="adminForm.do">관리자 메인</a>
+                            
                             <a class="nav-link" href="adminBoard.do">공지사항</a>
                             <a class="nav-link" href="adminUserForm.do">회원관리</a>
                             <a class="nav-link" href="adminSellerForm.do">거래처관리</a>  

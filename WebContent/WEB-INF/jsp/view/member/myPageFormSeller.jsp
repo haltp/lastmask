@@ -42,23 +42,15 @@
 			}
 		}).open();
 	}
-	function deleteUser(str) {
-		var yn = confirm("정말 탈퇴하시겠습니까?");
-		if (yn) {
-			frm.action = "myPageDelete.do?row=" + str;
-			frm.submit();
-		}
-	}
-	
 </script>
 
 </head>
 
 <body class="sb-nav-fixed">
  
- <jsp:include page="mypageMenu.jsp"></jsp:include> 
+ <jsp:include page="../product/productMenu.jsp"></jsp:include> 
  <div id="layoutSidenav">
- <jsp:include page="mypageMenuLeft.jsp"></jsp:include> 
+ <jsp:include page="../product/productMenuLeft.jsp"></jsp:include> 
             
             <!-- 내용 -->
             <div id="layoutSidenav_content">
@@ -75,47 +67,34 @@
 						<div class="card-body">
                            <div class="table-responsive">
                            
-					          <form id="frm" name="frm" action="myPageUpdate.do?row=${memberId }" onsubmit="return formCheck()" method="post">
+					          <form id="frm" name="frm" action="myPageUpdateForm.do?row=${memberId }" method="post">
 								<input type="hidden" name="boardWriter" value="${memberId }">
 								<c:forEach var="vo" items="${list }">
 								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<tr>
 										<th>ID</th>
-										<td><input style="border:none" type="text" name="memberId" size="120" value="${vo.memberId }" readonly/></td>
+										<td><input style="border:none" type="text" name="boardTitle" size="120" value="${vo.memberId }" readonly/></td>
 									</tr>  
 									<tr>
 										<th>이름</th>
-										<td><input style="border:none" type="text" name="memberName" size="120" value="${vo.memberName }" /></td>
-									</tr>
-									<tr>
-										<th>패스워드</th>
-										<td><input style="border:none" type="password" name="memberPassword" size="120" /></td>
-									</tr>
-									<tr>
-										<th>패스워드확인</th>
-										<td><input style="border:none" type="password" name="memberPassword1" size="120"/></td>
+										<td><input style="border:none" type="text" name="boardTitle" size="120" value="${vo.memberName }" readonly/></td>
 									</tr>
 									<tr>
 										<th>전화번호</th>
-										<td><input style="border:none" type="text" name="memberPhone" size="120" value="${vo.memberPhone }"/></td>
-									</tr>
-									<tr>
-										<th>우편번호</th>
-										<td><input style="border:none" type="text" name="memberZipcode" size="120" value="${vo.memberZipcode }" onclick="openZipSearch()"/></td>
+										<td><input style="border:none" type="text" name="boardTitle" size="120" value="${vo.memberPhone }" readonly/></td>
 									</tr>
 									<tr>
 										<th>주소</th>
-										<td><input style="border:none" type="text" name="memberAddress" size="120" value="${vo.memberAddress }" /></td>
+										<td><input style="border:none" type="text" name="boardTitle" size="120" value="${vo.memberZipcode }/${vo.memberAddress }" readonly/></td>
 									</tr>
 									<tr>
 										<th>이메일</th>
-										<td><input style="border:none" type="text" name="memberEmail" size="120" value="${vo.memberEmail }"/></td>
+										<td><input style="border:none" type="text" name="boardTitle" size="120" value="${vo.memberEmail }" readonly/></td>
 									</tr>
 									
 					
 									<tr align="center" valign="middle">
-										<td colspan="5"><input type="submit" value="회원 수정"> 
-										<button onclick="deleteUser('${vo.memberId}')">회원 탈퇴</button>
+										<td colspan="5"><input type="submit" value="수정"> 
 										<!-- <input type="reset" value="작성취소">  -->
 										<!-- <input type="button" onclick="location.href = 'boardListForm.do'" value="목록"> -->
 										</td>

@@ -29,17 +29,18 @@ public class BootPayImm implements Command {
 		}
 		
 		else {
-
-			System.out.println((String) session.getAttribute("memberId"));
-			System.out.println(request.getParameter("amount"));
-			System.out.println(Integer.parseInt(request.getParameter("productNum")));
-			System.out.println(Integer.parseInt(request.getParameter("productPrice")));
+//
+//			System.out.println((String) session.getAttribute("memberId"));
+//			System.out.println(request.getParameter("amount"));
+//			System.out.println(Integer.parseInt(request.getParameter("productNum")));
+//			System.out.println(Integer.parseInt(request.getParameter("productPrice")));
 			//System.out.println(request.getParameter("productName"));
 			
 			
 			
 			  vo.setCartUser((String) session.getAttribute("memberId"));
 			  vo.setCartSelect(Integer.parseInt(request.getParameter("amount")));
+			  vo.setCartProduct(Integer.parseInt(request.getParameter("productNum")));
 			  vo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
 			  //vo.setProductPrice(Integer.parseInt(request.getParameter("productPrice")));
 			  

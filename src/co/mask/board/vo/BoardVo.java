@@ -12,6 +12,7 @@ public class BoardVo {
 	private int boardLock;
 	private String boardValue;
 	private int boardHit;
+	private String productseller;
 	
 	public int getBoardNumber() {
 		return boardNumber;
@@ -67,6 +68,15 @@ public class BoardVo {
 	public void setBoardHit(int boardHit) {
 		this.boardHit = boardHit;
 	}
+	public String getProductseller() {
+		return productseller;
+	}
+	public void setProductseller(String productseller) {
+		this.productseller = productseller;
+	}
+	
+	
+	
 	
 	
 	

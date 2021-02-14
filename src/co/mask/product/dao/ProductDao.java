@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import co.mask.cart.vo.CartVo;
 import co.mask.common.DAO;
 import co.mask.product.vo.ProductVo;
 
@@ -18,7 +19,34 @@ public class ProductDao extends DAO{
 		ArrayList<ProductVo> list = new ArrayList<ProductVo>();
 		ProductVo vo;
 		
-		String sql = "SELECT * FROM PRODUCT ORDER BY PRODUCTNUM desc";
+		String sql = "SELECT * FROM PRODUCT ORDER BY PRODUCTNUM DESC";
+		try {
+			psmt=conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				vo=new ProductVo();
+				vo.setProductNum(rs.getInt("productNum"));
+				vo.setProductName(rs.getString("productName"));
+				vo.setProductQunt(rs.getInt("productQunt"));
+				vo.setProductPrice(rs.getInt("productPrice"));
+				vo.setProductSeller(rs.getString("productSeller"));
+				vo.setImage(rs.getString("image"));
+				list.add(vo);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
+	//best상품조회
+	public ArrayList<ProductVo> selectBest() {
+		ArrayList<ProductVo> list = new ArrayList<ProductVo>();
+		ProductVo vo;
+		
+		String sql = "select * from(select * from sellchart s, product p where s.CHARTPRODUCTNUM = p.PRODUCTNUM  order by s.CHARTPRODUCTQUNT desc) where rownum <=4";
 		try {
 			psmt=conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -41,32 +69,34 @@ public class ProductDao extends DAO{
 	}
 	
 	//판매자 상품조회
-	public ArrayList<ProductVo> selectList2(ProductVo vo) {
-		ArrayList<ProductVo> list = new ArrayList<ProductVo>();
-		
-		
-		String sql = "SELECT * FROM PRODUCT where productseller=? ORDER BY PRODUCTNUM";
-		try {
-			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, vo.getMemberId());
-			rs = psmt.executeQuery();
-			while (rs.next()) {
-				vo=new ProductVo();
-				vo.setProductNum(rs.getInt("productNum"));
-				vo.setProductName(rs.getString("productName"));
-				vo.setProductQunt(rs.getInt("productQunt"));
-				vo.setProductPrice(rs.getInt("productPrice"));
-				vo.setProductSeller(rs.getString("productSeller"));
-				vo.setImage(rs.getString("image"));
-				list.add(vo);
+		public ArrayList<ProductVo> selectList2(ProductVo vo) {
+			ArrayList<ProductVo> list = new ArrayList<ProductVo>();
+			
+			
+			String sql = "SELECT * FROM PRODUCT where productseller=? ORDER BY PRODUCTNUM";
+			try {
+				psmt=conn.prepareStatement(sql);
+				psmt.setString(1, vo.getMemberId());
+				rs = psmt.executeQuery();
+				while (rs.next()) {
+					vo=new ProductVo();
+					vo.setProductNum(rs.getInt("productNum"));
+					vo.setProductName(rs.getString("productName"));
+					vo.setProductQunt(rs.getInt("productQunt"));
+					vo.setProductPrice(rs.getInt("productPrice"));
+					vo.setProductSeller(rs.getString("productSeller"));
+					vo.setImage(rs.getString("image"));
+					list.add(vo);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close();
 			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close();
+			return list;
 		}
-		return list;
-	}
+		
+	
 	
 	//상품 한건 조회
 	public ProductVo select(ProductVo vo) {
@@ -84,34 +114,32 @@ public class ProductDao extends DAO{
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
-		}finally {
-			close();
 		}
 		return vo;
 	}
 		
 	
 	//판매자 상품 등록
-	public int insert(ProductVo vo) {
-		int n=0;
-		String sql="INSERT INTO PRODUCT VALUES(SEQ_PRODUCT.NEXTVAL,?,?,?,?,?)";
-		
-		try {
-			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, vo.getProductName());
-			psmt.setInt(2, vo.getProductQunt());
-			psmt.setInt(3, vo.getProductPrice());
-			psmt.setString(4, vo.getProductSeller());
-			psmt.setString(5, vo.getImage());
-			n=psmt.executeUpdate();
+		public int insert(ProductVo vo) {
+			int n=0;
+			String sql="INSERT INTO PRODUCT VALUES(SEQ_PRODUCT.NEXTVAL,?,?,?,?,?)";
 			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close();
+			try {
+				psmt=conn.prepareStatement(sql);
+				psmt.setString(1, vo.getProductName());
+				psmt.setInt(2, vo.getProductQunt());
+				psmt.setInt(3, vo.getProductPrice());
+				psmt.setString(4, vo.getProductSeller());
+				psmt.setString(5, vo.getImage());
+				n=psmt.executeUpdate();
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return n;	
 		}
-		return n;	
-	}
 	
 	//판매자 상품 수정
 	public int update(ProductVo vo) {
@@ -138,7 +166,7 @@ public class ProductDao extends DAO{
 	//판매자 상품 삭제
 	public int delete(ProductVo vo) {
 		int n=0;
-		String sql="delete from product where PRODUCTSELLER IN ( select m.memberid from member m where m.memberid=?) and productnum=?";
+		String sql="DELETE FROM PRODUCT WHERE PRODUCTSELLER IN ( SELECT M.MEMBERID FROM MEMBER M WHERE M.MEMBERID=?) AND PRODUCTNUM=?";
 		
 		try {
 			psmt=conn.prepareStatement(sql);
@@ -155,57 +183,76 @@ public class ProductDao extends DAO{
 		return n;	
 	}
 	
+	
 	//관리자 상품 삭제
-	public int deleteAdmin(ProductVo vo) {
-		int n=0;
-		String sql="";
-		
-		return n;
-		
-		
-		
-	}
-	
-	//재고 수량 감소
-	public int amountMinus(ProductVo vo) {
-		//UPDATE BOOK SET BCOUNT=BCOUNT-1 WHERE BOOKCODE=?
-		int n = 0;
-		String sql = "UPDATE PRODUCT SET PRODUCTQUNT=PRODUCTQUNT-? WHERE PRODUCTNUM=?";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getAmount());
-			psmt.setInt(2, vo.getProductNum());
+		public int deleteAdmin(ProductVo vo) {
+			int n=0;
+			String sql="";
 			
-			n = psmt.executeUpdate();
-		} catch (SQLException e) {
+			return n;
 			
-			e.printStackTrace();
-		}finally {
-			close();
+			
+			
 		}
-		return n;
-	} 
 	
-	//재고 수량 증가
-	public int amountPlus (ProductVo vo) {
-		//UPDATE BOOK SET BCOUNT=BCOUNT-1 WHERE BOOKCODE=?
-		int n = 0;
-		String sql = "UPDATE PRODUCT SET PRODUCTQUNT=PRODUCTQUNT+? WHERE PRODUCTNUM=?";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getAmount());
-			psmt.setInt(2, vo.getProductNum());
-			
-			n = psmt.executeUpdate();
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}finally {
-			close();
-		}
-		return n;
-	} 
+		
+		//재고 수량 감소
+		public int amountMinus(ProductVo vo) {
+			//UPDATE BOOK SET BCOUNT=BCOUNT-1 WHERE BOOKCODE=?
+			int n = 0;
+			String sql = "UPDATE PRODUCT SET PRODUCTQUNT=PRODUCTQUNT-? WHERE PRODUCTNUM=?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, vo.getAmount());
+				psmt.setInt(2, vo.getProductNum());
+				
+				n = psmt.executeUpdate();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return n;
+		} 
+		
+		//재고 수량 증가
+		public int amountPlus (ProductVo vo) {
+			//UPDATE BOOK SET BCOUNT=BCOUNT-1 WHERE BOOKCODE=?
+			int n = 0;
+			String sql = "UPDATE PRODUCT SET PRODUCTQUNT=PRODUCTQUNT+? WHERE PRODUCTNUM=?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, vo.getAmount());
+				psmt.setInt(2, vo.getProductNum());
+				
+				n = psmt.executeUpdate();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return n;
+		} 
 	
+	public int productUpDown(ProductVo vo) { //갯수 증가 감소
+	      int n=0;
+	      String sql="UPDATE PRODUCT SET PRODUCTQUNT=? WHERE PRODUCTNUM=?";
+	      
+	      try {
+	         psmt=conn.prepareStatement(sql);
+	         psmt.setInt(1, vo.getProductQunt());
+	         psmt.setInt(2, vo.getProductNum());
+	         n=psmt.executeUpdate();
+	      }catch(SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close();
+	      }
+	      
+	      return n;   
+	   }
 	
 	public void close() { //close 메소드
 		try {

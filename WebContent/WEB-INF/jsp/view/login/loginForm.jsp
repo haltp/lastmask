@@ -10,7 +10,10 @@
         <meta name="author" content="" />
         <title>Page Title - SB Admin</title>
         <link href="css/styles.css" rel="stylesheet" />
+       
+        <!-- script -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+       
        
     </head>
     <body class="bg-primary">
@@ -37,6 +40,7 @@
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                
                                                 <button class="btn btn-primary" type="submit">Login</button>
+                                                
                                             </div>
                                         </form>
                                     </div>
@@ -44,7 +48,10 @@
                                         <div class="small"><a href="joinForm.do">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>
+                                 
+                                <!--  <button class="btn btn-primary" id="kakaol" onclick="Kakao.Auth.logout()">logout</button> -->
                             </div>
+                          
                         </div>
                     </div>
                 </main>

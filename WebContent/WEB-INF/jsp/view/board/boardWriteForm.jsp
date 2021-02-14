@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +25,46 @@
   	<!-- <link href="dist/css/styles.css" rel="stylesheet" />  -->
 	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 	  <!-- script -->
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-	
+	<script type="text/javascript">
+
+
+$(function () {
+
+	   $.ajax({
+	     url: '/MaskTest/getProductServletTest',
+	     type: 'get',
+	     dataType: 'json',
+	     success: showContents,
+	     error: showErrors
+	   });
+
+	 })
+
+	 function showErrors(result) {
+	   console.log(result)
+	  
+	 }
+
+	 function showContents(result) { // [{},{},{}]
+
+	   //console.log(result)
+
+	   let list = result;
+	   for (val of list) {
+		   
+		   
+			let opt = $('<option />').attr('id','memberAuth').attr('value',val.productSeller).html(val.productName);
+			
+			$('.sominSelect').append(opt);
+			
+	   }
+	 }
+	 
+
+
+</script>
 
 
 </head>
@@ -64,6 +104,13 @@
 										<th>내용</th>
 										<td><textarea style="border:none" id="boardContent" name="boardContent" rows="10" cols="150" ></textarea></td>
 									</tr>
+									
+									<tr align="center">
+										<th>선택</th>
+										<td><select class="form-control form-control-lg sominSelect" name="boardSelect"></select></td>
+									</tr>
+					
+									
 								
 									<tr align="center" valign="middle">
 										<td colspan="5"><input type="submit" value="등록"> 

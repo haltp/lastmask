@@ -13,12 +13,13 @@ import co.mask.product.dao.ProductDao;
 import co.mask.product.vo.ProductVo;
 
 
-@WebServlet("/getProductServletTest")
-public class getProductServletTest extends HttpServlet {
+
+@WebServlet("/getBestProduct")
+public class getBestProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
-    public getProductServletTest() {
+    public getBestProduct() {
         super();
         
     }
@@ -28,12 +29,12 @@ public class getProductServletTest extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html charset=utf-8");
 		
+				
 		
-		
-		//showProduct.do 처리 메소드
 				ProductDao dao = new ProductDao();
 				ArrayList<ProductVo> list = new ArrayList<ProductVo>();
-				list=dao.selectList();
+				list=dao.selectBest();
+				
 				//request.setAttribute("list", list);
 				
 				String json = "[";

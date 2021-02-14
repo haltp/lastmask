@@ -20,21 +20,31 @@ public class BoardWirte implements Command {
 		vo.setBoardWriter(request.getParameter("boardWriter"));
 		vo.setBoardContent(request.getParameter("boardContent"));
 		vo.setBoardValue(request.getParameter("boardValue"));
+		
+		
+		String[] productS = request.getParameterValues("boardSelect");
+		//System.out.println(productS);
+		
 		//vo.setBoardFile(request.getParameter("boardfile"));
-
 		
 		
-		dao.boardInsert(vo);
+	    
+		
+		
 		
 		String viewPage="";
 		
 		if("notice".equals(request.getParameter("boardValue"))) {
 			viewPage="adminBoard.do";
+			dao.boardInsert(vo);
 		}
 		
 		
 		
 		else if("questions".equals(request.getParameter("boardValue")) ) {
+			String proS=productS[0];
+			vo.setProductseller(proS);
+			dao.boardInsert(vo);
 			viewPage="showBoardTest2.do";
 		}
 		

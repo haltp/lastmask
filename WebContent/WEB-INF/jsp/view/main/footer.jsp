@@ -19,15 +19,12 @@
 				</div>
 				<!-- Footer Social Icons-->
 				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="text-uppercase mb-4">Around the Web</h4>
-					<a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-facebook-f"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-twitter"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-linkedin-in"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-dribbble"></i></a>
+					<h4 class="text-uppercase mb-4">고객센터</h4>
+					<p class="lead mb-0">
+						053.421.2460<br/>
+						월~금: 오전 9:00~ 오후 6:00<br/>
+						토,일,공휴일 : 휴무<br/>
+					</p>
 				</div>
 				<!-- Footer About Text-->
 				<div class="col-lg-4">

@@ -63,28 +63,28 @@
 									</tr> -->
 											<tr>
 												<th>회원 아이디</th>
-												<td ><input style="border:none" type="text" size="130" placeholder="${vo.memberId }" /></td>
+												<td ><input style="border:none" type="text" size="130" value="${vo.memberId }" readonly/></td>
 											</tr>
 											<tr>
 												<th>회원 이름</th>
-												<td><input style="border:none" type="text" id="memberName" name="memberName" size="130" placeholder="${vo.memberName }"></td>
+												<td><input style="border:none" type="text" id="memberName" name="memberName" size="130" value="${vo.memberName }"></td>
 											</tr>
 											<tr>
 												<th>전화 번호</th>
-												<td><input style="border:none" type="text" id="memberPhone" name="memberPhone" size="130" placeholder="${vo.memberPhone }"></td>
+												<td><input style="border:none" type="text" id="memberPhone" name="memberPhone" size="130" value="${vo.memberPhone }"></td>
 											</tr>
 											<tr>
 												<th>우편번호</th>
-												<td><input style="border:none" type="text" id="memberZipcode" name="memberZipcode" size="50" placeholder="${vo.memberZipcode }">
+												<td><input style="border:none" type="text" id="memberZipcode" name="memberZipcode" size="50" value="${vo.memberZipcode }">
 													<button type="button" onclick="openZipSearch()">우편번호 검색</button></td>
 											</tr>
 											<tr>
 												<th>주소</th>
-												<td><input style="border:none" type="text" id="memberAddress" name="memberAddress" size="130" placeholder="${vo.memberAddress }"></td>
+												<td><input style="border:none" type="text" id="memberAddress" name="memberAddress" size="130" value="${vo.memberAddress }"></td>
 											</tr>
 											<tr>
 												<th>이메일</th>
-												<td><input style="border:none" type="text" id="memberEmail" name="memberEmail" size="130" placeholder="${vo.memberEmail }"></td>
+												<td><input style="border:none" type="text" id="memberEmail" name="memberEmail" size="130" value="${vo.memberEmail }"></td>
 											</tr>
 											<tr>
 												<th>권한</th>

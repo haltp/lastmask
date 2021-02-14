@@ -36,7 +36,7 @@
                         </c:if>
                         <c:choose>
                         <c:when test="${memberAuth == 'ADMIN'}">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="adminForm.do">관리자</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="adminBoard.do">관리자</a></li>
                         </c:when>
                         <c:when test="${memberAuth == 'SELLER'}">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="sellerView.do">판매자</a></li>

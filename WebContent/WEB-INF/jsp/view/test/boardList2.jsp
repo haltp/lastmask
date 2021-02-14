@@ -113,8 +113,9 @@ em {
 </table>
 <br>
 	<br>
-	<button class="btn btn-primary btn-user btn-block" type="button" onclick="location.href='boardWriteForm.do'">
-                                    Register</button>
+	<c:if test="${memberId ne null }">
+		<button class="btn btn-primary btn-user btn-block" type="button" onclick="location.href='boardWriteForm.do'"> Register</button>
+	</c:if>
 	<br>
 	<br>
 	<br>

@@ -19,9 +19,9 @@ public class InputCart implements Command {
 		CartVo vo = new CartVo();
 		
 		//재고 수량 감소
-		ProductDao pDao = new ProductDao();
-		ProductVo pVo = new ProductVo();
-		
+//		ProductDao pDao = new ProductDao();
+//		ProductVo pVo = new ProductVo();
+//		
 		
 		HttpSession session = request.getSession();
 		/*
@@ -46,11 +46,11 @@ public class InputCart implements Command {
 			dao.insert(vo);
 			request.setAttribute("vo", vo);
 			
-			//재고 수량 감소
-			pVo.setAmount(Integer.parseInt(request.getParameter("amount")));
-			pVo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
-			pDao.amountMinus(pVo);
-			request.setAttribute("pVo", pVo);
+//			//재고 수량 감소
+//			pVo.setAmount(Integer.parseInt(request.getParameter("amount")));
+//			pVo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
+//			pDao.amountMinus(pVo);
+//			request.setAttribute("pVo", pVo);
 			
 			viewPage = "cartView.do";
 			

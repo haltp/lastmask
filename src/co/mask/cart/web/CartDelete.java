@@ -21,12 +21,12 @@ public class CartDelete implements Command {
 		dao.delete(vo);
 		
 		//재고수량 증가
-		ProductDao pDao = new ProductDao();
-		ProductVo pVo = new ProductVo();
-		
-		pVo.setAmount(Integer.parseInt(request.getParameter("cartSelect")));
-		pVo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
-		pDao.amountPlus(pVo);
+//		ProductDao pDao = new ProductDao();
+//		ProductVo pVo = new ProductVo();
+//		
+//		pVo.setAmount(Integer.parseInt(request.getParameter("cartSelect")));
+//		pVo.setProductNum(Integer.parseInt(request.getParameter("productNum")));
+//		pDao.amountPlus(pVo);
 		
 		
 		return "cartView.do";
