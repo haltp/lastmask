@@ -37,10 +37,10 @@
                                                 <input class="form-control py-4" id="inputPassword" name="memberPassword" type="password" placeholder="Enter password" />
                                             </div>
                                             
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                               
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-2 mb-0">
+                                                <a class="small" href="passwordForgotForm.do">Forgot Password?</a>
+                                                <a class="small" href="main.do">Want go Home?</a>
                                                 <button class="btn btn-primary" type="submit">Login</button>
-                                                
                                             </div>
                                         </form>
                                     </div>

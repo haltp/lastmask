@@ -44,6 +44,8 @@ import co.mask.join.web.JoinForm;
 import co.mask.login.web.Login;
 import co.mask.login.web.LoginForm;
 import co.mask.login.web.Logout;
+import co.mask.login.web.PasswordForgotForm;
+import co.mask.login.web.PasswordReset;
 import co.mask.main.MainPage;
 import co.mask.main.Menu;
 import co.mask.member.web.MyPageDelete;
@@ -111,6 +113,8 @@ public class FrontController5 extends HttpServlet {
 		map.put("/myPageUpdate.do", new MyPageUpdate());// 멤버의 내정보 수정
 		map.put("/myPageDelete.do", new MyPageDelete());// 멤버의 회원탈퇴
 		map.put("/logout.do", new Logout());//로그아웃
+		map.put("/passwordForgotForm.do", new PasswordForgotForm()); //비밀번호 까먹었을때 폼 호출
+		map.put("/passwordReset.do", new PasswordReset()); //비밀번호 리셋
 		
 		//FrontController2
 

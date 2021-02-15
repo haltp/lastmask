@@ -139,6 +139,27 @@ public class MemberDao extends DAO {
 		}
 		return n;
 	}
+	
+	//비밀번호 리셋
+		public int passwordReset(MemberVo vo) {
+			int n = 0;
+			String sql = "UPDATE MEMBER SET MEMBERPASSWORD=? WHERE MEMBERID=? AND MEMBERNAME=? AND MEMBERPHONE=? AND MEMBEREMAIL=?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, vo.getMemberPassword());
+				psmt.setString(2, vo.getMemberId());
+				psmt.setString(3, vo.getMemberName());
+				psmt.setString(4, vo.getMemberPhone());
+				psmt.setString(5, vo.getMemberEmail());
+				
+				n = psmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close();
+			}
+			return n;
+		}
 
 	public void close() { // close 메소드
 		try {
