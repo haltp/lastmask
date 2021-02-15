@@ -52,7 +52,7 @@
 									</tr>  
 									<tr align="center">
 										<td id="title">내용</td>
-										<td><textarea style="border:none" name="reply" rows="10" cols="150" readonly>${vo.boardContent }</textarea></td>
+										<td><textarea style="border:none" name="boardContent" rows="10" cols="150" readonly>${vo.boardContent }</textarea></td>
 									</tr>
 									
 									<tr align="center">
