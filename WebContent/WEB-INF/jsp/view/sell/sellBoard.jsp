@@ -19,10 +19,7 @@
 	<!-- script -->
  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 	<script type="text/javascript"> 
- 		function updateUser(str){
-			frm.action = "boardUpdateForm.do?row="+str;
-			frm.submit();
-		}
+ 		
 		function replyUser(str){
 			
 				frm.action = "replyForm.do?row="+str;
@@ -64,8 +61,8 @@
 											<th width="300">제목</th>
 											<!-- <th width="70">내용</th> -->
 											<th width="100">날짜</th>
-											<th width="70">수정</th>
-											<th width="70">삭제</th>
+								
+											<th width="70">답변</th>
 										</tr>
 									 </thead>
 				 					 <tbody>
@@ -78,7 +75,7 @@
 												<td width="70">${vo.boardTitle}</td>
 												<%-- <td width="70">${vo.boardContent}</td> --%>
 												<td width="70">${vo.boardDate}</td>
-											    <td ><button type="button" onclick="updateUser('${vo.boardNumber}')">보기</button></td>
+											    
 												<td ><button type="submit" onclick="replyUser(${vo.boardNumber})">답변</button></td> 
 											</tr>
 										</c:forEach>

@@ -46,10 +46,14 @@
 								<input type="hidden" name="boardValue" value="${vo.boardValue }">
 								
 								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									 <!-- <tr>
-										<th>작성자</th>
-										<td><input style="border:none" type="text" name="boardTitle" size="150" /></td>
-									</tr> --> 
+									<tr align="center">
+										<td id="title">제목</td>
+										<td><input style="border:none" type="text" name="boardTitle" size="150" value="${vo.boardTitle }" readonly /></td>
+									</tr>  
+									<tr align="center">
+										<td id="title">내용</td>
+										<td><textarea style="border:none" name="reply" rows="10" cols="150" readonly>${vo.boardContent }</textarea></td>
+									</tr>
 									
 									<tr align="center">
 										<td id="title">답변</td>
@@ -62,8 +66,8 @@
 									</tr> -->
 					
 									<tr align="center" valign="middle">
-										<td colspan="5"><input type="submit" value="수정"> 
-										<input type="reset" value="작성취소"> 
+										<td colspan="5"><input type="submit" value="답변작성"> 
+										<input type="reset" value="리셋"> 
 										<!-- <input type="button" onclick="location.href = 'boardListForm.do'" value="목록"> -->
 										</td>
 									</tr>
