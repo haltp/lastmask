@@ -18,7 +18,13 @@ public class SellerDelete implements Command {
 
 		int n = dao.delete(vo);
 
-		return "adminSellerForm.do";
-	}
+		String viewPage = null;
+		if (n != 0) {
+			viewPage = "adminSellerForm.do";
+		} else {
+			viewPage = "view/admin/sellerDeleteFail";
+		}
 
+		return viewPage;
+	}
 }

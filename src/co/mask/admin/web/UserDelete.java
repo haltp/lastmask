@@ -18,8 +18,14 @@ public class UserDelete implements Command {
 
 		int n = dao.delete(vo);
 
-		return "adminUserForm.do";
-
+		String viewPage = null;
+		if(n != 0) {
+			viewPage = "adminUserForm.do";
+		}else {
+			viewPage = "view/admin/userDeleteFail";
+		}
+		
+		return viewPage;
 	}
 
 }
