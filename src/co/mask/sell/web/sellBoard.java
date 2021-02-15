@@ -29,7 +29,7 @@ public class sellBoard implements Command {
 		
 		//if (memId == )
 		
-		return "view/admin/adminBoard";
+		return "view/sell/sellBoard";
 	}
 
 }

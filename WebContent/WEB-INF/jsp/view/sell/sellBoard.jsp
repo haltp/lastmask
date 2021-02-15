@@ -23,12 +23,11 @@
 			frm.action = "boardUpdateForm.do?row="+str;
 			frm.submit();
 		}
-		function deleteUser(str,str1){
-			var yn = confirm("정말 삭제하시겠습니까?");
-			if (yn) {
-				frm.action = "boardDelete.do?row="+str+"&row2="+str1;
+		function replyUser(str){
+			
+				frm.action = "replyForm.do?row="+str;
 				frm.submit();
-			}
+			
 		}
 	</script>  
 	
@@ -41,7 +40,7 @@
  
  <jsp:include page="../product/productMenu.jsp"></jsp:include> 
  <div id="layoutSidenav">
-<jsp:include page="../product/productMenuLeft.jsp"></jsp:include> 
+ <jsp:include page="../product/productMenuLeft.jsp"></jsp:include> 
             
             <!-- 내용 -->
             <div id="layoutSidenav_content">
@@ -79,8 +78,8 @@
 												<td width="70">${vo.boardTitle}</td>
 												<%-- <td width="70">${vo.boardContent}</td> --%>
 												<td width="70">${vo.boardDate}</td>
-											    <td ><button type="button" onclick="updateUser('${vo.boardNumber}')">수정</button></td>
-												<td ><button type="submit" onclick="deleteUser(${vo.boardNumber}, '${vo.boardValue}')">삭제</button></td> 
+											    <td ><button type="button" onclick="updateUser('${vo.boardNumber}')">보기</button></td>
+												<td ><button type="submit" onclick="replyUser(${vo.boardNumber})">답변</button></td> 
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -91,49 +90,6 @@
 						<!-- card body 끝 -->
 					</div>
 					<!-- 공지목록 card 끝 -->
-					
-             		<div class="card mb-4">
-                       <div class="card-header">
-	                      <i class="fas fa-table mr-1"></i>
-                                공지사항 등록
-                        </div>
-                        <!-- card body -->
-						<div class="card-body">
-                           <div class="table-responsive">
-					          <form name="boardForm" method="post" action="boardWirte.do">
-								<input type="hidden" name="boardWriter" value="${memberId }">
-								<input type="hidden" name="boardValue" value="notice">
-								 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<!-- <tr>
-										<th>작성자</th>
-										<td><input type="text" name="name"></td>
-									</tr> -->
-									<tr align="center">
-										<th>제목</th>
-										<td><input style="border:none" type="text" name="boardTitle" size="150" /></td>
-									</tr>
-									<tr align="center">
-										<td id="title">내용</td>
-										<td><textarea style="border:none" name="boardContent" rows="10" cols="150" ></textarea></td>
-									</tr>
-									<!-- <tr>
-										<td id="title">파일첨부</td>
-										<td><input type="file" name="boardFile" /></td>
-									</tr> -->
-					
-									<tr align="center" valign="middle">
-										<td colspan="5"><input type="submit" value="등록"> 
-										<input type="reset" value="작성취소"> 
-										<!-- <input type="button" onclick="location.href = 'boardListForm.do'" value="목록"> -->
-										</td>
-									</tr>
-								</table>
-							</form>
-						 </div>
-						</div>
-						<!-- card body 끝 -->
-					</div>
-					<!-- 공지등록 card 끝 -->
 					
 				</div>
 				<!-- container 끝 -->

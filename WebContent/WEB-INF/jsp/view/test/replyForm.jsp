@@ -10,7 +10,7 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" /> 
  	
-	<title>공지사항 수정</title>
+	<title>답변</title>
 	
 	<!-- link -->
   	<link href="dist/css/styles.css" rel="stylesheet" /> 
@@ -23,9 +23,9 @@
 
 <body class="sb-nav-fixed">
  
- <jsp:include page="../admin/adminMenu.jsp"></jsp:include> 
+ <jsp:include page="../product/productMenu.jsp"></jsp:include> 
  <div id="layoutSidenav">
- <jsp:include page="../admin/adminMenuLeft.jsp"></jsp:include> 
+ <jsp:include page="../product/productMenuLeft.jsp"></jsp:include> 
             
             <!-- 내용 -->
             <div id="layoutSidenav_content">
@@ -41,7 +41,7 @@
                         <!-- card body -->
 						<div class="card-body">
                            <div class="table-responsive">
-					          <form id="frm" name="frm" action="boardUpdate.do?row=${vo.boardNumber }" method="post">
+					          <form id="frm" name="frm" action="reply.do?row=${vo.boardNumber }" method="post">
 								<input type="hidden" name="boardWriter" value="${memberId }">
 								<input type="hidden" name="boardValue" value="${vo.boardValue }">
 								
@@ -50,13 +50,10 @@
 										<th>작성자</th>
 										<td><input style="border:none" type="text" name="boardTitle" size="150" /></td>
 									</tr> --> 
+									
 									<tr align="center">
-										<th>제목</th>
-										<td><input style="border:none" type="text" name="boardTitle" size="150" value="${vo.boardTitle }" /></td>
-									</tr>
-									<tr align="center">
-										<td id="title">내용</td>
-										<td><textarea style="border:none" name="boardContent" rows="10" cols="150" >${vo.boardContent }</textarea></td>
+										<td id="title">답변</td>
+										<td><textarea style="border:none" name="reply" rows="10" cols="150" ></textarea></td>
 									</tr>
 									
 									<!-- <tr>

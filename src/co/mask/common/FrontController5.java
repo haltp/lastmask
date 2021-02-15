@@ -71,10 +71,12 @@ import co.mask.sellChart.web.ChartInsert;
 import co.mask.sellChart.web.ChartList;
 import test.AdminMain;
 import test.AdminUserFormTest;
+import test.ReplyForm;
 import test.ShowBoardTest;
 import test.ShowBoardTest2;
 import test.ShowProductTest;
 import test.kakaotest;
+import test.reply;
 
  
 @WebServlet("/FrontController5")
@@ -175,6 +177,10 @@ public class FrontController5 extends HttpServlet {
 			map.put("/kakaotest.do", new kakaotest()); //관리자 공지사항
 			
 			map.put("/sellBoard.do", new sellBoard()); //판매자 문의사항
+			
+			map.put("/replyForm.do", new ReplyForm());//문의사항 답변
+			map.put("/reply.do", new reply());//문의사항 답변
+			
 			
 		
 	}

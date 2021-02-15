@@ -13,6 +13,7 @@ public class BoardVo {
 	private String boardValue;
 	private int boardHit;
 	private String productseller;
+	private String reply;
 	
 	public int getBoardNumber() {
 		return boardNumber;
@@ -73,6 +74,12 @@ public class BoardVo {
 	}
 	public void setProductseller(String productseller) {
 		this.productseller = productseller;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
 	}
 	
 	

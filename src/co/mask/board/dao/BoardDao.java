@@ -130,6 +130,8 @@ public class BoardDao extends DAO {
 		return n;
 	}
 	
+	
+	
 
 	public int deleteBoard(BoardVo vo) {
 		// 삭제 쿼리
@@ -216,6 +218,7 @@ public class BoardDao extends DAO {
 				vo.setBoardDate(rs.getDate("boarddate"));
 				vo.setBoardHit(rs.getInt("boardhit"));
 				vo.setBoardValue(rs.getString("boardvalue"));
+				vo.setReply(rs.getString("reply"));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -245,5 +248,27 @@ public class BoardDao extends DAO {
 		
 		return n;
 	}
+	
+	
+	
+	public int boardUpdateReply(BoardVo vo) {
+		int n = 0;
+		String sql = "update board set reply=? where boardnumber=?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getReply());
+			psmt.setInt(2, vo.getBoardNumber());
+			n = psmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		
+		return n;
+	}
+	
 
 }

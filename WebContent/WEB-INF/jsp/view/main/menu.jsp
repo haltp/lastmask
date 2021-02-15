@@ -26,7 +26,7 @@
                         <c:if test="${memberId eq null}">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="loginForm.do">로그인</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="joinForm.do">회원가입</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="nonMemberCart.do">장바구니</a></li>
+                        <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="nonMemberCart.do">장바구니</a></li> -->
                         </c:if>
                         <c:if test="${memberId ne null }">
                         

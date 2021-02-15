@@ -110,6 +110,11 @@
 										<th>조회수</th>
 										<td><input style="border:none" type="text" name="boardHit" size="50" value="${vo.boardHit }" /></td>
 									</tr>
+									
+									<tr>
+										<th>답변</th>
+										<td><input style="border:none" type="text" name="reply" size="50" value="${vo.reply }" /></td>
+									</tr>
 								
 									
 								
