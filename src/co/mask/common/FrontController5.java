@@ -92,41 +92,53 @@ public class FrontController5 extends HttpServlet {
     }
 
 	public void init(ServletConfig config) throws ServletException {
-		//FrontController1
-		map.put("/menu.do", new Menu());
-		map.put("/main.do", new MainPage());
-		map.put("/joinForm.do", new JoinForm()); // 회원가입 폼 호출
-		map.put("/idCheck.do", new IdCheck()); // 아이디 중복체크
-		map.put("/join.do", new Join()); // 회원가입
-		map.put("/loginForm.do", new LoginForm()); // 로그인 폼 호출
-		map.put("/login.do", new Login()); // 로그인
-		map.put("/adminForm.do", new AdminFrom()); // 관리자의 관리자창 폼 호출
-		map.put("/adminUserForm.do", new AdminUserForm()); // 관리자의 회원목록 폼 호출
-		map.put("/userUpForm.do", new UserUpForm()); // 관리자의 회원 수정 폼 호출
-		map.put("/userUpdate.do", new UserUpdate()); // 관리자의 회원 수정
-		map.put("/userDelete.do", new UserDelete()); // 관리자의 회원 삭제
-		map.put("/adminSellerForm.do", new AdminSellerForm()); // 관리자의 거래처목록 폼 호출
-		map.put("/sellerUpForm.do", new SellerUpForm()); // 관리자의 거래처 수정 폼 호출
-		map.put("/sellerUpdate.do", new SellerUpdate()); // 관리자의 거래처 수정
-		map.put("/sellerDelete.do", new SellerDelete()); // 관리자의 거래처 삭제
-		map.put("/myPageForm.do", new MyPageForm()); // 멤버(회원,거래처)의 내정보 조회
-		map.put("/myPageFormSeller.do", new MyPageFormSeller()); // 판매자(회원,거래처)의 내정보 조회
-		map.put("/myPageUpdateForm.do", new MyPageUpdateForm());// 멤버의 내정보 수정 폼 호출
-		map.put("/myPageUpdate.do", new MyPageUpdate());// 멤버의 내정보 수정
-		map.put("/myPageDelete.do", new MyPageDelete());// 멤버의 회원탈퇴
-		map.put("/logout.do", new Logout());//로그아웃
-		map.put("/passwordForgotForm.do", new PasswordForgotForm()); //비밀번호 까먹었을때 폼 호출
-		map.put("/passwordReset.do", new PasswordReset()); //비밀번호 리셋
 		
-		//FrontController2
+	
+	map.put("/menu.do", new Menu());
+	map.put("/main.do", new MainPage());
+	
+	//회원가입
+	map.put("/joinForm.do", new JoinForm()); // 회원가입 폼 호출
+	map.put("/idCheck.do", new IdCheck()); // 아이디 중복체크
+	map.put("/join.do", new Join()); // 회원가입
+	
+	//로그인
+	map.put("/loginForm.do", new LoginForm()); // 로그인 폼 호출
+	map.put("/login.do", new Login()); // 로그인
+	
+	//관리자
+	map.put("/adminForm.do", new AdminFrom()); // 관리자의 관리자창 폼 호출
+	map.put("/adminUserForm.do", new AdminUserForm()); // 관리자의 회원목록 폼 호출
+	map.put("/userUpForm.do", new UserUpForm()); // 관리자의 회원 수정 폼 호출
+	map.put("/userUpdate.do", new UserUpdate()); // 관리자의 회원 수정
+	map.put("/userDelete.do", new UserDelete()); // 관리자의 회원 삭제
+	map.put("/adminSellerForm.do", new AdminSellerForm()); // 관리자의 거래처목록 폼 호출
+	map.put("/sellerUpForm.do", new SellerUpForm()); // 관리자의 거래처 수정 폼 호출
+	map.put("/sellerUpdate.do", new SellerUpdate()); // 관리자의 거래처 수정
+	map.put("/sellerDelete.do", new SellerDelete()); // 관리자의 거래처 삭제
+	
+	//내정보
+	map.put("/myPageForm.do", new MyPageForm()); // 멤버(회원,거래처)의 내정보 조회
+	map.put("/myPageFormSeller.do", new MyPageFormSeller()); // 판매자(회원,거래처)의 내정보 조회
+	map.put("/myPageUpdateForm.do", new MyPageUpdateForm());// 멤버의 내정보 수정 폼 호출
+	map.put("/myPageUpdate.do", new MyPageUpdate());// 멤버의 내정보 수정
+	map.put("/myPageDelete.do", new MyPageDelete());// 멤버의 회원탈퇴
+	
+	//로그아웃
+	map.put("/logout.do", new Logout());//로그아웃
+	
+	//비밀번호 찾기
+	map.put("/passwordForgotForm.do", new PasswordForgotForm()); //비밀번호 까먹었을때 폼 호출
+	map.put("/passwordReset.do", new PasswordReset()); //비밀번호 리셋
+	
 
-				//Cart
-				map.put("/cartView.do", new CartView()); // 장바구니 리스트 페이지
-				map.put("/bootPay.do", new BootPay()); // bootPay 결제
-				map.put("/bootPayImm.do", new BootPayImm()); // bootPay 결제
-				map.put("/cartDelete.do", new CartDelete()); // 장바구니 삭제
-				map.put("/nonMemberBootPay.do", new NonMemberBootPay()); // 비회원 결제
-				map.put("/nonMemberCart.do", new NonMemberCart()); // 비회원 장바구니
+	//Cart
+	map.put("/cartView.do", new CartView()); // 장바구니 리스트 페이지
+	map.put("/bootPay.do", new BootPay()); // bootPay 결제
+	map.put("/bootPayImm.do", new BootPayImm()); // bootPay 결제
+	map.put("/cartDelete.do", new CartDelete()); // 장바구니 삭제
+	map.put("/nonMemberBootPay.do", new NonMemberBootPay()); // 비회원 결제
+	map.put("/nonMemberCart.do", new NonMemberCart()); // 비회원 장바구니
 				//Sell
 				map.put("/buyerView.do", new BuyerView()); // 판매 내역 리스트 (구매자)
 				map.put("/sellInsert.do", new SellInsert()); // 판매 내역 입력
