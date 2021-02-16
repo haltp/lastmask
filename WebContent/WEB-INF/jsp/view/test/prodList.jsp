@@ -113,7 +113,7 @@
     let div6_e2_e1_e1_e1_p=$('<p />').addClass("mb-5").html("가격 :"+val.productPrice);
     let div6_e2_e1_e1_e1_p2=$('<p />').addClass("mb-5").html("재고 :"+val.productQunt);
     let div6_e2_e1_e1_e1_p3=$('<p />').addClass("mb-5").html("구매수량:")
-    let div6_e2_e1_e1_e1_p3_input=$('<input />').attr('type','text').attr('name','amount'+val.productNum).attr('id','amount'+val.productNum).attr('required','required');
+    let div6_e2_e1_e1_e1_p3_input=$('<input />').attr('type','number').attr('name','amount'+val.productNum).attr('id','amount'+val.productNum).attr('required','required');
     
     
     

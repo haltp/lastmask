@@ -106,7 +106,7 @@ $(function () {
 									</tr>
 									
 									<tr align="center">
-										<th>선택</th>
+										<th>상품</th>
 										<td><select class="form-control form-control-lg sominSelect" name="boardSelect"></select></td>
 									</tr>
 					

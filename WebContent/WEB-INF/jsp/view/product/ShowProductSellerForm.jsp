@@ -124,11 +124,11 @@
 									</tr> 
 									<tr align="center">
 										<th>수량</th>
-										<td><input style="border:none" type="text" id="productQunt" name="productQunt" size="130" required></td>
+										<td><input style="border:none" type="number" id="productQunt" name="productQunt" size="130" required></td>
 									</tr>
 									<tr align="center">
 										<th>가격</th>
-										<td><input style="border:none" type="text" id="productPrice" name="productPrice" size="130" /></td>
+										<td><input style="border:none" type="number" id="productPrice" name="productPrice" size="130" required/></td>
 									</tr>	
 									<tr align="center">
 										<th>판매자</th>
