@@ -48,7 +48,7 @@
                                         <div class="small"><a href="joinForm.do">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>
-                                 
+                                 <!-- <button class="btn btn-primary" id="kakaol" onclick="location.href='kakaotest.do'">kakao</button> -->
                                 <!--  <button class="btn btn-primary" id="kakaol" onclick="Kakao.Auth.logout()">logout</button> -->
                             </div>
                           
